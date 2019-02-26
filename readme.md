@@ -1,5 +1,5 @@
 # yinwang bak
 
-articles from [yinwang.org]
+articles from <http://yinwang.org>
 
 project from [kurisu project](https://kuricat.com/project)
