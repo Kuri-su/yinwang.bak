@@ -1,9 +1,9 @@
 <div class="inner">
 <h2>再谈“P vs NP”问题</h2>
-<p>曾经写过一篇文章表达对计算机科学里著名的 “<a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">P vs NP</a>” 问题的看法。当时正在研究那些东西，由于看透了却不在乎，所以写得特别简略。没想到有人看到那篇文章后，还误以为我没仔细学过复杂度理论，说我是信口开河。我一般懒得谈论这种太理论的问题，身边也很少有人关心，所以后来干脆把文章撤了。</p>
+<p>曾经写过一篇文章表达对计算机科学里著名的 “<a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">P vs NP</a>” 问题的看法。当时正在研究那些东西，由于看透了却不在乎，所以写得特别简略。没想到有人看到后，还误以为我没仔细学过复杂度理论，说我是信口开河。我一般懒得谈论这种太理论的问题，身边也很少有人关心，所以后来干脆把文章撤了。</p>
 <p>没想到最近又遇到有人抓住我删掉的文章，乘机跟我辩论这事。跟上课似的头头是道滔滔不绝，几乎把他本科算法课本上的内容给我背了一遍，却没有显示出任何他自己的思想。说王垠你太自以为是了，你知不知道“P vs NP”要是解决了，世界将有天翻地覆的变化，多少的计算难题会被解决，机器学习都没必要了，非对称加密全都被破解……</p>
 <p>呃，我真是服了某些人，还是国内某大厂的 P10（注：不是 Intel）。鉴于很多人对此类问题的一知半解，反倒说我一知半解，我决定事后把这个问题再详细讲一下，免得以后还要为它费口舌。</p>
-<p>对于初学者： “<a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">P vs NP</a>” 问题属于计算理论（Theory of Computation）的一部分：复杂度理论。计算理论不止包括复杂度理论（Complexity），还包括可计算性（Computability）。如果你没有系统的学习过复杂度理论，我建议你仔细研读一下经典的计算理论教材，比如 Michael Sipser 的『<a href="https://www.amazon.com/Introduction-Theory-Computation-Michael-Sipser/dp/113318779X">Introduction to the Theory of Computation</a>』。</p>
+<p>对于初学者这篇文章有点门槛，需要学习一些东西。“<a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">P vs NP</a>” 问题属于计算理论（Theory of Computation）的一部分——复杂度理论。计算理论不止包括复杂度理论（Complexity），还包括可计算性（Computability）。如果你没有系统的学习过复杂度理论，我建议你仔细研读一下经典的计算理论教材，比如 Michael Sipser 的『<a href="https://www.amazon.com/Introduction-Theory-Computation-Michael-Sipser/dp/113318779X">Introduction to the Theory of Computation</a>』。</p>
 <p>我当年在 Indiana 做研究生计算理论课助教的时候，可算是把这书给看透了。其中“可计算理论”在我将来的 PL 研究中起了比较大的启发作用，而复杂性理论的用处一般。我觉得 Sipser 的书写的不够清晰透彻，但很多学校拿它做教材，好像也没有更好的替代品，所以将就着看吧。</p>
 <h3 id="p-vs-np-真的重要吗">“P vs NP” 真的重要吗？</h3>
 <p>“P vs NP” 这个问题有它的理论价值，它是有趣的问题，里面的有些思路有启发意义，值得花些时间来了解。但计算机科学界长久以来都严重夸大它的重要性，把一个很普通的问题捧上了天，吹得神乎其神。</p>
