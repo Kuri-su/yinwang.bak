@@ -13,16 +13,16 @@
 <p>这例子跟我之前看到的 GCC bug 不大一样，但大致是类似的推理方式：这个函数依次经过这样两个优化步骤（RNCE 和 DCE），之后得出“等价”的代码：</p>
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">contains_null_check_after_RNCE</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">P</span><span class="p">)</span> <span class="p">{</span>
 <span class="kt">int</span> <span class="n">dead</span> <span class="o">=</span> <span class="o">*</span><span class="n">P</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="nb">false</span><span class="p">)</span>  <span class="c1">// P在上一行被访问，所以这里P不可能是null
-</span>    <span class="k">return</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">false</span><span class="p">)</span>  <span class="c1">// P在上一行被访问，所以这里P不可能是null</span>
+<span class="k">return</span><span class="p">;</span>
 <span class="o">*</span><span class="n">P</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">contains_null_check_after_RNCE_and_DCE</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">P</span><span class="p">)</span> <span class="p">{</span>
-<span class="c1">// int dead = *P;    // 死代码
-</span>  <span class="c1">// if (false)        // 死代码
-</span>  <span class="c1">//   return;         // 死代码
-</span>  <span class="o">*</span><span class="n">P</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="c1">// int dead = *P;    // 死代码</span>
+<span class="c1">// if (false)        // 死代码</span>
+<span class="c1">//   return;         // 死代码</span>
+<span class="o">*</span><span class="n">P</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 <p>他的推理方式是这样：</p>

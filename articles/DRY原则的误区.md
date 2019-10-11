@@ -20,11 +20,11 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">C</span> <span class="o">{</span>
 <span class="kt">int</span> <span class="n">a</span><span class="o">;</span>
 <span class="o">}</span>
-<span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">C</span> <span class="o">{</span>
+<span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="no">C</span> <span class="o">{</span>
 <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
 <span class="o">}</span>
-<span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="n">C</span> <span class="o">{</span>
+<span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="no">C</span> <span class="o">{</span>
 <span class="kt">int</span> <span class="n">u</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">v</span><span class="o">;</span>
 <span class="o">}</span>

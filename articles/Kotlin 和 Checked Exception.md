@@ -20,7 +20,7 @@
 <h3 id="checked-exceptionce的重要性">Checked Exception（CE）的重要性</h3>
 <p>有几个我觉得很重要的，具有突破性的语言特性，Kotlin 并没有实现。另外我还发现一个很重要的 Java 特性，被 Kotlin 的设计者给盲目抛弃了。这就是我今天要讲的主题：checked exception。我不知道这个术语有什么标准的中文翻译，为了避免引起定义混乱，下文我就把它简称为“CE”好了。</p>
 <p>先来科普一下 CE 到底是什么吧。Java 要求你必须在函数的类型里面声明它可能抛出的异常。比如，你的函数如果是这样：</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">foo</span><span class="o">(</span><span class="n">string</span> <span class="n">filename</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">FileNotFoundException</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">foo</span><span class="o">(</span><span class="n">string</span> <span class="n">filename</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">FileNotFoundException</span>
 <span class="o">{</span>
 <span class="k">if</span> <span class="o">(...)</span>
 <span class="o">{</span>
@@ -34,7 +34,7 @@
 <span class="o">{</span>
 <span class="n">foo</span><span class="o">(</span><span class="s">"blah"</span><span class="o">);</span>
 <span class="o">}</span> 
-<span class="k">catch</span> <span class="o">(</span><span class="n">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span>
+<span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span>
 <span class="o">{</span>
 <span class="o">...</span>
 <span class="o">}</span>
