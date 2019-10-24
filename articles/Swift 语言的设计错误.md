@@ -2,19 +2,19 @@
 <h2>Swift 语言的设计错误</h2>
 <p>在『<a href="http://www.yinwang.org/blog-cn/2015/11/21/programming-philosophy">编程的智慧</a>』一文中，我分析和肯定了 Swift 语言的 optional type 设计，但这并不等于 Swift 语言的整体设计是完美没有问题的。其实 Swift 1.0 刚出来的时候，我就发现它的 array 可变性设计存在严重的错误。Swift 2.0 修正了这个问题，然而他们的修正方法却没有击中要害，所以导致了其它的问题。这个错误一直延续到今天。</p>
 <p>Swift 1.0 试图利用 var 和 let 的区别来指定 array 成员的可变性，然而其实 var 和 let 只能指定 array reference 的可变性，而不能指定 array 成员的可变性。举个例子，Swift 1.0 试图实现这样的语义：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var shoppingList = ["Eggs", "Milk"]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var shoppingList = ["Eggs", "Milk"]
 
 // 可以对 array 成员赋值
 shoppingList[0] = "Salad"
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let shoppingList = ["Eggs", "Milk"]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let shoppingList = ["Eggs", "Milk"]
 
 // 不能对 array 成员赋值，报错
 shoppingList[0] = "Salad"
 </code></pre></div></div>
-<p>这是错误的。在 Swift 1.0 里面，array 像其它的 object 一样，是一种“reference type”。为了理解这个问题，你应该清晰地区分 array reference 和 array 成员的区别。在这个例子里，<code class="highlighter-rouge">shoppingList</code> 是一个 array reference，而 <code class="highlighter-rouge">shoppingList[0]</code> 是访问一个 array 成员，这两者有着非常大的不同。</p>
-<p>var 和 let 本来是用于指定 <code class="highlighter-rouge">shoppingList</code> 这个 reference 是否可变，也就是决定 <code class="highlighter-rouge">shoppingList</code> 是否可以指向另一个 array 对象。正确的用法应该是这样：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var shoppingList = ["Eggs", "Milk"]
+<p>这是错误的。在 Swift 1.0 里面，array 像其它的 object 一样，是一种“reference type”。为了理解这个问题，你应该清晰地区分 array reference 和 array 成员的区别。在这个例子里，<code class="language-plaintext highlighter-rouge">shoppingList</code> 是一个 array reference，而 <code class="language-plaintext highlighter-rouge">shoppingList[0]</code> 是访问一个 array 成员，这两者有着非常大的不同。</p>
+<p>var 和 let 本来是用于指定 <code class="language-plaintext highlighter-rouge">shoppingList</code> 这个 reference 是否可变，也就是决定 <code class="language-plaintext highlighter-rouge">shoppingList</code> 是否可以指向另一个 array 对象。正确的用法应该是这样：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var shoppingList = ["Eggs", "Milk"]
 
 // 可以对 array reference 赋值
 shoppingList = ["Salad", "Noodles"]
@@ -22,7 +22,7 @@ shoppingList = ["Salad", "Noodles"]
 // 可以对 array 成员赋值
 shoppingList[0] = "Salad"
 </code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let shoppingList = ["Eggs", "Milk"]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let shoppingList = ["Eggs", "Milk"]
 
 // 不能对 array reference 赋值，报错
 shoppingList = ["Salad", "Noodles"]
@@ -30,11 +30,11 @@ shoppingList = ["Salad", "Noodles"]
 // let 不能限制对 array 成员赋值，不报错
 shoppingList[0] = "Salad"
 </code></pre></div></div>
-<p>也就是说你可以用 var 和 let 来限制 <code class="highlighter-rouge">shoppingList</code> 这个 reference 的可变性，而不能用来限制 <code class="highlighter-rouge">shoppingList[0]</code> 这样的成员访问的可变性。</p>
+<p>也就是说你可以用 var 和 let 来限制 <code class="language-plaintext highlighter-rouge">shoppingList</code> 这个 reference 的可变性，而不能用来限制 <code class="language-plaintext highlighter-rouge">shoppingList[0]</code> 这样的成员访问的可变性。</p>
 <p>var 和 let 一旦被用于指定 array reference 的可变性，就不再能用于指定 array 成员的可变性。实际上 var 和 let 用于局部变量定义的时候，只能指定栈上数据的可变性。如果你理解 reference 是放在栈（stack）上的，而 Swift 1.0 的 array 是放在堆（heap）上的，就会明白array 成员（一种堆数据）可变性，必须用另外的方式来指定，而不能用 var 和 let。</p>
-<p>很多古老的语言都已经看清楚了这个问题，它们明确的用两种不同的方式来指定栈和堆数据的可变性。C++ 程序员都知道 <code class="highlighter-rouge">int const *</code> 和 <code class="highlighter-rouge">int * const</code> 的区别。Objective C 程序员都知道 <code class="highlighter-rouge">NSArray</code> 和 <code class="highlighter-rouge">NSMutableArray</code> 的区别。我不知道为什么 Swift 的设计者看不到这个问题，试图用同样的关键字（var 和 let）来指定栈和堆两种不同位置数据的可变性。实际上，不可变数组和可变数组，应该使用两种不同的类型来表示，就像 Objective C 的 <code class="highlighter-rouge">NSArray</code> 和 <code class="highlighter-rouge">NSMutableArray</code> 那样，而不应该使用 var 和 let 来区分。</p>
-<p>Swift 2.0 修正了这个问题，然而可惜的是，它的修正方式是错误的。Swift 2.0 做出了一个离谱的改动，它把 array 从 reference type 变成了所谓 value type，也就是说把整个 array 放在栈上，而不是堆上。这貌似解决了以上的问题，由于 array 成了 value type，那么  <code class="highlighter-rouge">shoppingList</code> 就不是  reference，而代表整个 array 本身。所以在 array 是 value type 的情况下，你确实可以用 var 和 let 来决定它的成员是否可变。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let shoppingList = ["Eggs", "Milk"]
+<p>很多古老的语言都已经看清楚了这个问题，它们明确的用两种不同的方式来指定栈和堆数据的可变性。C++ 程序员都知道 <code class="language-plaintext highlighter-rouge">int const *</code> 和 <code class="language-plaintext highlighter-rouge">int * const</code> 的区别。Objective C 程序员都知道 <code class="language-plaintext highlighter-rouge">NSArray</code> 和 <code class="language-plaintext highlighter-rouge">NSMutableArray</code> 的区别。我不知道为什么 Swift 的设计者看不到这个问题，试图用同样的关键字（var 和 let）来指定栈和堆两种不同位置数据的可变性。实际上，不可变数组和可变数组，应该使用两种不同的类型来表示，就像 Objective C 的 <code class="language-plaintext highlighter-rouge">NSArray</code> 和 <code class="language-plaintext highlighter-rouge">NSMutableArray</code> 那样，而不应该使用 var 和 let 来区分。</p>
+<p>Swift 2.0 修正了这个问题，然而可惜的是，它的修正方式是错误的。Swift 2.0 做出了一个离谱的改动，它把 array 从 reference type 变成了所谓 value type，也就是说把整个 array 放在栈上，而不是堆上。这貌似解决了以上的问题，由于 array 成了 value type，那么  <code class="language-plaintext highlighter-rouge">shoppingList</code> 就不是  reference，而代表整个 array 本身。所以在 array 是 value type 的情况下，你确实可以用 var 和 let 来决定它的成员是否可变。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let shoppingList = ["Eggs", "Milk"]
 
 // 不能对 array 成员赋值，因为 shoppingList 是 value type
 // 它表示整个 array 而不是一个指针
@@ -42,7 +42,7 @@ shoppingList[0] = "Salad"
 shoppingList[0] = "Salad"
 </code></pre></div></div>
 <p>这看似一个可行的解决方案，然而它却没有击中要害。这是一种削足适履的做法，它带来了另外的问题。把 array 作为 value type，使得每一次对 array 变量的赋值或者参数传递，都必须进行拷贝。你没法让两个变量指向同一个 array，也就是说 array 不再能被共享。比如：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var a = [1, 2, 3]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>var a = [1, 2, 3]
 
 // a 的内容被拷贝给 b
 // a 和 b 是两个不同的 array，有相同的内容

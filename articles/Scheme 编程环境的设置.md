@@ -9,7 +9,7 @@
 <p>世界上最快，最成熟可靠的 Scheme 实现是 R. Kent Dybvig 所作的 Chez Scheme。它可以把 Scheme 编译成机器代码，运行速度非常高。Chez Scheme 曾经是商业软件，价格昂贵，然而现在却开源了，并且可以免费使用。你可以在这里下载 Chez Scheme 的源代码：</p>
 <p><a href="https://github.com/cisco/ChezScheme">https://github.com/cisco/ChezScheme</a></p>
 <p>编译安装很快很方便，在 Linux 和 Mac 系统基本就是这样：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure
 make
 sudo make install
 </code></pre></div></div>
@@ -23,7 +23,7 @@ sudo make install
 <p>ParEdit mode 可以在这里下载：</p>
 <p><a href="http://mumble.net/~campbell/emacs/paredit.el">http://mumble.net/~campbell/emacs/paredit.el</a></p>
 <p>下载之后，把它放到一个目录里，比如 ~/.emacs.d，然后打开 ~/.emacs 配置文件，加入如下设置：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(add-to-list 'load-path "~/.emacs.d")
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(add-to-list 'load-path "~/.emacs.d")
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code."
   t)
@@ -31,7 +31,7 @@ sudo make install
 <p>这样，只要你使用 M-x paredit-mode 就可以自动载入这个模式。具体的操作方式可以看它的说明（按 C-h m 查看“模式帮助”），我下面也会简单说一下。</p>
 <h3 id="设置-scheme-mode">设置 scheme mode</h3>
 <p>我一般就用系统自带的 Scheme 模式，叫 cmuscheme。但是为了方便，我自己写了几个函数，用于在执行 Scheme 代码的时候自动启动解释器，并且打开解释器窗口。你基本只需要把下面的代码拷贝到你的 .emacs 文件里就行：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>;;;;;;;;;;;;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>;;;;;;;;;;;;
 ;; Scheme 
 ;;;;;;;;;;;;
 
@@ -91,20 +91,20 @@ sudo make install
 <p>为此，ParEdit mode 提供了几个非常高效的编辑方式。我平时只使用两个：</p>
 <ol>
 <li>
-<p><code class="highlighter-rouge">C-right</code>: 也就是按住 Ctrl 再按右箭头。它的作用是让光标右边的括号，“吞掉”下一个S表达式。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>比如，`(a b c) (d e)`。你把光标放在 `(a b c)` 里面，然后按 `C-right`。结果就是 `(a b c (d e))`。也就是把 `(d e)` 被整个“吞进”了 `(a b c)` 里面。 
+<p><code class="language-plaintext highlighter-rouge">C-right</code>: 也就是按住 Ctrl 再按右箭头。它的作用是让光标右边的括号，“吞掉”下一个S表达式。</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>比如，`(a b c) (d e)`。你把光标放在 `(a b c)` 里面，然后按 `C-right`。结果就是 `(a b c (d e))`。也就是把 `(d e)` 被整个“吞进”了 `(a b c)` 里面。 
 </code></pre></div>    </div>
 </li>
 <li>
-<p><code class="highlighter-rouge">M-r</code>: 去掉外层代码。</p>
+<p><code class="language-plaintext highlighter-rouge">M-r</code>: 去掉外层代码。</p>
 <p>这在你需要去掉外层的 let 等结构的时候非常有用。比如，如果你的代码看起来是这样：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(let ([x 10])
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(let ([x 10])
   (* x 2))
 </code></pre></div>    </div>
-<p>当你把光标放在 <code class="highlighter-rouge">(* x 2)</code> 的最左边，然后按  <code class="highlighter-rouge">M-r</code>，结果就变成了</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(* x 2)
+<p>当你把光标放在 <code class="language-plaintext highlighter-rouge">(* x 2)</code> 的最左边，然后按  <code class="language-plaintext highlighter-rouge">M-r</code>，结果就变成了</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(* x 2)
 </code></pre></div>    </div>
-<p>也就是把外面的 <code class="highlighter-rouge">(let ([x 10]) ...)</code> 给“掀掉”了。</p>
+<p>也就是把外面的 <code class="language-plaintext highlighter-rouge">(let ([x 10]) ...)</code> 给“掀掉”了。</p>
 <p>其它的一些按键虽然也有用，不过我觉得这两个是最有用的，甚至不可缺少的。有些其他的自动匹配括号的模式，没有提供这种按键，所以用起来很别扭。</p>
 </li>
 </ol>
@@ -113,7 +113,7 @@ sudo make install
 <p>你只需要下载这个 el，放到你的 .emacs.d:</p>
 <p><a href="https://www.dropbox.com/s/v0ejctd1agrt95x/parenface.el">https://www.dropbox.com/s/v0ejctd1agrt95x/parenface.el</a></p>
 <p>然后在 .emacs 里面加入两行：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(require 'parenface)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(require 'parenface)
 (set-face-foreground 'paren-face "DimGray")
 </code></pre></div></div>
 <p>然后再打开 Scheme 代码的时候，你就会看到是这个样子：</p>

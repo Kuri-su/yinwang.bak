@@ -19,7 +19,7 @@
 <p>想不到吧，现代语言的很多优点，其实都是来自于 Lisp — 世界上第二古老的程序语言。所以有人才会说，每一种现代语言都在朝着 Lisp 的方向“进化”。如果你相信了这话，也许就会疑惑，为什么 Lisp 今天没有成为主流，为什么 Lisp Machine 会被 Unix 打败。其实除了商业原因之外，还有技术上的问题。</p>
 <p>早期的 Lisp 其实普遍存在一个非常严重的问题：它使用 dynamic scoping。所谓 dynamic scoping 就是说，如果你的函数定义里面有“自由变量”，那么这个自由变量的值，会随着函数的“调用位置”的不同而发生变化。</p>
 <p>比如下面我定义一个函数 f，它接受一个参数 y，然后返回 x 和 y 的积。</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(setq f 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(setq f 
       (let ((x 1)) 
         (lambda (y) (* x y))))
 </code></pre></div></div>
@@ -27,20 +27,20 @@
 <p>看着这段代码，你会很自然的认为，因为 x 的值是 1，那么 f 被调用的时候，结果应该等于 (* 1 y)，也就是说应该等于 y 的值。可是这在 dynamic scoping 的语言里结果如何呢？我们来看看吧。</p>
 <p>（你可以在 emacs 里面试验以下的结果，因为 Emacs Lisp 使用的就是 dynamic scoping。）</p>
 <p>如果我们在函数调用的外层定义一个 x，值为 2：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(let ((x 2))
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(let ((x 2))
   (funcall f 2))
 </code></pre></div></div>
 <p>因为这个 x 跟 f 定义处的 x 的作用域不同，所以它们不应该互相干扰。所以我们应该得到 2。可是，这段代码返回的结果却为 4。</p>
 <p>再来。我们另外定义一个 x，值为 3：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(let ((x 3))
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(let ((x 3))
   (funcall f 2))
 </code></pre></div></div>
 <p>我们的期望值还是 2，可是结果却是 6。</p>
 <p>再来。如果我们直接调用：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(funcall f 2)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(funcall f 2)
 </code></pre></div></div>
 <p>你想这次总该得到 2 了吧？结果，出错了：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Debugger entered--Lisp error: (void-variable x)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Debugger entered--Lisp error: (void-variable x)
   (* x y)
   (lambda (y) (* x y))(2)
   funcall((lambda (y) (* x y)) 2)
@@ -52,7 +52,7 @@
 <p>看到问题了吗？f 的行为，随着调用位置的一个“名叫 x”的变量的值而发生变化。而这个 x，跟 f 定义处的 x 其实根本就不是同一个变量，它们只不过名字相同而已。这会导致非常难以发现的错误，也就是早期的 Lisp 最令人头痛的地方。好在现在的大部分语言其实已经吸取了这个教训，所以你不再会遇到这种让人发疯的痛苦。不管是 Scheme, Common Lisp, Haskell, OCaml, Python, JavaScript…… 都不使用 dynamic scoping。</p>
 <p>那现在也许你了解了，什么是让人深恶痛绝的 dynamic scoping。如果我告诉你，Lisp Machine 所使用的语言 Lisp Machine Lisp 使用的也是 dynamic scoping，你也许就明白了为什么 Lisp Machine 会失败。因为它跟现在的 Common Lisp 和 Scheme，真的是天壤之别。我宁愿写 C++，Java 或者 Python，也不愿意写 Lisp Machine Lisp 或者 Emacs Lisp。</p>
 <p>话说回来，为什么早期的 Lisp 会使用 dynamic scoping 呢？其实这根本就不是一个有意的“设计”，而是一个无意的“巧合”。你几乎什么都不用做，它就成那个样子了。这不是开玩笑，如果你在 emacs 里面显示 f 的值，它会打印出：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'(lambda (y) (* x y))
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'(lambda (y) (* x y))
 </code></pre></div></div>
 <p>这说明 f 的值其实是一个 S 表达式，而不是像 Scheme 一样的“闭包”（closure）。原来，Emacs Lisp 直接把函数定义处的 S 表达式 ‘(lambda (y) (* x y)) 作为了函数的“值”，这是一种很幼稚的做法。如果你是第一次实现函数式语言的新手，很有可能就会这样做。Lisp 的设计者当年也是这样的情况。</p>
 <p>简单倒是简单，麻烦事接着就来了。调用 f 的时候，比如 (funcall f 2)，y 的值当然来自参数 2，可是 x 的值是多少呢？答案是：不知道！不知道怎么办？到“外层环境”去找呗，看到哪个就用哪个，看不到就报错。所以你就看到了之前出现的现象，函数的行为随着一个完全无关的变量而变化。如果你单独调用 (funcall f 2) 就会因为找不到 x 的值而出错。</p>
@@ -61,7 +61,7 @@
 <p>我不想在这里深入细节。如果你对实现语言感兴趣的话，可以参考我的另一篇博文《怎样写一个解释器》。它教你如何实现一个正确的，没有以上毛病的解释器。</p>
 <p>与 dynamic scoping 相对的就是“lexical scoping”。我刚才告诉你的闭包，就是 lexical scoping 的实现方法。第一个实现 lexical scoping 的语言，其实不是 Lisp 家族的，而是 Algol 60。“Algol”之所以叫这名字，是因为它的设计初衷是用来实现算法（algorithm）。其实 Algol 比起 Lisp 有很多不足，但在 lexical scoping 这一点上它却做对了。Scheme 从 Algol 60 身上学到了 lexical scoping，成为了第一个使用 lexical scoping 的“Lisp 方言”。9 年之后，Lisp 家族的“集大成者” Common Lisp 诞生了，它也采用了 lexical scoping。看来英雄所见略同。</p>
 <p>你也许发现了，Lisp 其实不是一种语言，而是很多种语言。这些被人叫做“Lisp 家族”的语言，其实共同点只是它们的“语法”：它们都是基于 S 表达式。如果你因此对它们同样赞美的话，那么你赞美的其实只是 S 表达式，而不是这些语言本身。因为一个语言的本质应该是由它的语义决定的，而跟语法没有很大关系。你甚至可以给同一种语言设计多种不同的语法，而不改变这语言的本质。比如，我曾经给 TeX 设计了 Lisp 的语法，我把它叫做 SchTeX（Scheme + TeX）。SchTeX 的文件看起来是这个样子：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(documentclass article (11pt))
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(documentclass article (11pt))
 (document
   (abstract (...))
   (section (First Section)

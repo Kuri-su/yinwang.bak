@@ -3,9 +3,9 @@
 <p>一直很了解人们对于 parser 的误解，可是一直都提不起兴趣来阐述对它的观点。然而我觉得是有必要解释一下这个问题的时候了。我感觉得到大部分人对于 parser 的误解之深，再不澄清一下，恐怕这些谬误就要写进歪曲的历史教科书，到时候就没有人知道真相了。</p>
 <h3 id="什么是-parser">什么是 Parser</h3>
 <p>首先来科普一下。所谓 parser，一般是指把某种格式的文本（字符串）转换成某种数据结构的过程。最常见的 parser，是把程序文本转换成编译器内部的一种叫做“抽象语法树”（AST）的数据结构。也有简单一些的 parser，用于处理 CSV，JSON，XML 之类的格式。</p>
-<p>举个例子，一个处理算数表达式的 parser，可以把“1+2”这样的，含有 <code class="highlighter-rouge">1</code>，<code class="highlighter-rouge">+</code>，<code class="highlighter-rouge">2</code> 三个字符的字符串，转换成一个对象（object）。这个对象就像 <code class="highlighter-rouge">new BinaryExpression(ADD, new Number(1), new Number(2))</code> 这样的 Java 构造函数调用生成出来的那样。</p>
+<p>举个例子，一个处理算数表达式的 parser，可以把“1+2”这样的，含有 <code class="language-plaintext highlighter-rouge">1</code>，<code class="language-plaintext highlighter-rouge">+</code>，<code class="language-plaintext highlighter-rouge">2</code> 三个字符的字符串，转换成一个对象（object）。这个对象就像 <code class="language-plaintext highlighter-rouge">new BinaryExpression(ADD, new Number(1), new Number(2))</code> 这样的 Java 构造函数调用生成出来的那样。</p>
 <p>之所以需要做这种从字符串到数据结构的转换，是因为编译器是无法直接操作“1+2”这样的字符串的。实际上，代码的本质根本就不是字符串，它本来就是一个具有复杂拓扑的数据结构，就像电路一样。“1+2”这个字符串只是对这种数据结构的一种“编码”，就像 ZIP 或者 JPEG 只是对它们压缩的数据的编码一样。</p>
-<p>这种编码可以方便你把代码存到磁盘上，方便你用文本编辑器来修改它们，然而你必须知道，文本并不是代码本身。所以从磁盘读取了文本之后，你必须先“解码”，才能方便地操作代码的数据结构。比如，如果上面的 Java 代码生成的 AST 节点叫 <code class="highlighter-rouge">node</code>，你就可以用 <code class="highlighter-rouge">node.operator</code> 来访问 <code class="highlighter-rouge">ADD</code>，用 <code class="highlighter-rouge">node.left</code> 来访问 <code class="highlighter-rouge">1</code>，<code class="highlighter-rouge">node.right</code> 来访问 <code class="highlighter-rouge">2</code>。这是很方便的。</p>
+<p>这种编码可以方便你把代码存到磁盘上，方便你用文本编辑器来修改它们，然而你必须知道，文本并不是代码本身。所以从磁盘读取了文本之后，你必须先“解码”，才能方便地操作代码的数据结构。比如，如果上面的 Java 代码生成的 AST 节点叫 <code class="language-plaintext highlighter-rouge">node</code>，你就可以用 <code class="language-plaintext highlighter-rouge">node.operator</code> 来访问 <code class="language-plaintext highlighter-rouge">ADD</code>，用 <code class="language-plaintext highlighter-rouge">node.left</code> 来访问 <code class="language-plaintext highlighter-rouge">1</code>，<code class="language-plaintext highlighter-rouge">node.right</code> 来访问 <code class="language-plaintext highlighter-rouge">2</code>。这是很方便的。</p>
 <p>对于程序语言，这种解码的动作就叫做 parsing，用于解码的那段代码就叫做 parser。</p>
 <h3 id="parser在编译器中的地位">Parser在编译器中的地位</h3>
 <p>那么貌似这样说来，parser 是编译器里面很关键的一个部分了？显然，parser 是必不可少的，然而它并不像很多人想象的那么重要。Parser 的重要性和技术难度，被很多人严重的夸大了。一些人提到“编译器”，就跟你提 LEX，YACC，ANTLR  等用于构造 parser 的工具，仿佛编译器跟 parser 是等价的似的。还有些人，只要听说别人写了个 parser，就觉得这人编程水平很高，开始膜拜了。这些都是肤浅的表现。</p>
@@ -14,8 +14,8 @@
 <h3 id="parser-技术发展的误区">Parser 技术发展的误区</h3>
 <p>既然 parser 在编译器中处于次要的地位，可是为什么还有人花那么大功夫研究各种炫酷的 parser 技术呢。LL，LR，GLR，LEX, YACC，Bison，parser combinator，ANTLR，PEG，…… 制造 parser 的工具似乎层出不穷，每出现一个新的工具都号称可以处理更加复杂的语法。</p>
 <p>很多人盲目地设计复杂的语法，然后用越来越复杂的 parser 技术去 parse 它们，这就是 parser 技术仍然在发展的原因。向往复杂的语法，是程序语言领域流传非常广，危害非常大的错误倾向。在人类历史的长河中，留下了许多难以磨灭的历史性糟粕，它们固化了人类对于语言设计的理念。很多人设计语言似乎不是为了拿来好用的，而是为了让用它的人迷惑或者害怕。</p>
-<p>有些人假定了数学是美好的语言，所以他们盲目的希望程序语言看起来更加像数学。于是他们模仿数学，制造了各种奇怪的操作符，制定它们的优先级，这样你就可以写出 <code class="highlighter-rouge">2 &lt;&lt; 7 - 2 * 3</code> 这样的代码，而不需要给子表达式加上括号。还有很多人喜欢让语法变得“简练”，就为了少打几个括号，分号，花括号，…… 可是由此带来的结果是复杂，不一致，有多义性，难扩展的语法，以及障眼难读，模棱两可的代码。</p>
-<p>更有甚者，对数学的愚蠢做法执迷不悟的人，设计了像 Haskell 和 Coq 那样的语言。在 Haskell 里面，你可以在代码里定义新的操作符，指定它的“结合律”（associativity）和“优先级”（precedence）。这样的语法设计，要求 parser 必须能够在 parse 过程中途读入并且加入新的 parse 规则。Coq 试图更加“强大”一些，它让你可以定义“mixfix 操作符”，也就是说你的操作符可以连接超过两个表达式。这样你就可以定义像 <code class="highlighter-rouge">if...then...else...</code> 这样的“操作符”。</p>
+<p>有些人假定了数学是美好的语言，所以他们盲目的希望程序语言看起来更加像数学。于是他们模仿数学，制造了各种奇怪的操作符，制定它们的优先级，这样你就可以写出 <code class="language-plaintext highlighter-rouge">2 &lt;&lt; 7 - 2 * 3</code> 这样的代码，而不需要给子表达式加上括号。还有很多人喜欢让语法变得“简练”，就为了少打几个括号，分号，花括号，…… 可是由此带来的结果是复杂，不一致，有多义性，难扩展的语法，以及障眼难读，模棱两可的代码。</p>
+<p>更有甚者，对数学的愚蠢做法执迷不悟的人，设计了像 Haskell 和 Coq 那样的语言。在 Haskell 里面，你可以在代码里定义新的操作符，指定它的“结合律”（associativity）和“优先级”（precedence）。这样的语法设计，要求 parser 必须能够在 parse 过程中途读入并且加入新的 parse 规则。Coq 试图更加“强大”一些，它让你可以定义“mixfix 操作符”，也就是说你的操作符可以连接超过两个表达式。这样你就可以定义像 <code class="language-plaintext highlighter-rouge">if...then...else...</code> 这样的“操作符”。</p>
 <p>制造这样复杂难懂的语法，没有什么真正的好处。不但给程序员的学习造成了不必要的困难，让代码难以理解，而且也给 parser 的作者带来了严重的挑战。可是有些人就是喜欢制造问题，就像一句玩笑话说的：有困难要上，没有困难，制造困难也要上！</p>
 <p>如果你的语言语法很简单（像 Scheme 那样），你是不需要任何高深的 parser 理论的。说白了，你只需要知道如何 parse 匹配的括号。最多一个小时，几百行 Java 代码，我就能写出一个类似 Scheme 语言的 parser。</p>
 <p>可是很多人总是嫌问题不够有难度，于是他们不停地制造更加复杂的语法，甚至会故意让自己的语言看起来跟其它的不一样，以示“创新”。当然了，这样的语言就得用更加复杂的 parser 技术，这正好让那些喜欢折腾复杂 parser 技术的人洋洋得意。</p>

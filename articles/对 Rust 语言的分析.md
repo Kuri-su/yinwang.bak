@@ -14,7 +14,7 @@
 <p>变量缺省都是不可变的，也就是不可赋值。你必须用一种特殊的构造</p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 </code></pre></div></div>
-<p>来声明可变变量。这跟 Swift/Scala 的 <code class="highlighter-rouge">let</code> 和 <code class="highlighter-rouge">var</code> 的区别是一样的，只是形式不大一样。</p>
+<p>来声明可变变量。这跟 Swift/Scala 的 <code class="language-plaintext highlighter-rouge">let</code> 和 <code class="language-plaintext highlighter-rouge">var</code> 的区别是一样的，只是形式不大一样。</p>
 <h3 id="变量可以重复绑定">变量可以重复绑定</h3>
 <p>Rust 的变量定义有一个比其它语言更奇怪的地方，它可以让你在同一个作用域里面“重复绑定”同一个名字，甚至可以把它绑定到另外一个类型：</p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">x</span><span class="p">:</span> <span class="nb">i32</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -27,8 +27,8 @@
 <span class="nd">println!</span><span class="p">(</span><span class="s">"y is {}"</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>      <span class="c">// 定义在第二个 let y 的地方</span>
 </code></pre></div></div>
 <p>在 Yin 语言最初的设计里面，我也是允许这样的重复绑定的。第一个 y 和 第二个 y 是两个不同的变量，只不过它们碰巧叫同一个名字而已。你甚至可以在同一行出现两个 x，而它们其实是不同的变量！这难道不是一个很酷，很灵活，其他语言都没有的设计吗？后来我发现，虽然这实现起来没什么难度，可是这样做不但没有带来更大的方便性，反而可能引起程序的混淆不清。在同一个作用域里面，给两个不同的变量起同一个名字，这有什么用处呢？自找麻烦而已。</p>
-<p>比如上面的例子，在下面我们看到一个对变量 <code class="highlighter-rouge">y</code> 的引用，它是在哪里定义的呢？你需要在头脑中对程序进行“数据流分析”，才能找到它定义的位置。从上面读起，我们看到 <code class="highlighter-rouge">let y = 4</code>，然而这不一定是正确的定义，因为 <code class="highlighter-rouge">y</code> 可以被重新绑定，所以我们必须继续往下看。30 行代码之后，我们看到了第二个对 <code class="highlighter-rouge">y</code> 的绑定，可是我们仍然不能确定。继续往下扫，30行代码之后我们到了引用 <code class="highlighter-rouge">y</code> 的地方，没有再看到其它对 <code class="highlighter-rouge">y</code> 的绑定，所以我们才能确信第二个 let 是 <code class="highlighter-rouge">y</code> 的定义位置，它是一个字符串。</p>
-<p>这难道不是很费事吗？更糟的是，这种人工扫描不是一次性的工作，每次看到这个变量，你都要疑惑一下它是什么东西，因为它可以被重新绑定，你必须重新确定一下它的定义。如果语言不允许在同一个作用域里面重复绑定同一个名字，你就根本不需要担心这个事情了。你只需要在作用域里面找到唯一的那个 <code class="highlighter-rouge">let y = ...</code>，那就是它的定义。</p>
+<p>比如上面的例子，在下面我们看到一个对变量 <code class="language-plaintext highlighter-rouge">y</code> 的引用，它是在哪里定义的呢？你需要在头脑中对程序进行“数据流分析”，才能找到它定义的位置。从上面读起，我们看到 <code class="language-plaintext highlighter-rouge">let y = 4</code>，然而这不一定是正确的定义，因为 <code class="language-plaintext highlighter-rouge">y</code> 可以被重新绑定，所以我们必须继续往下看。30 行代码之后，我们看到了第二个对 <code class="language-plaintext highlighter-rouge">y</code> 的绑定，可是我们仍然不能确定。继续往下扫，30行代码之后我们到了引用 <code class="language-plaintext highlighter-rouge">y</code> 的地方，没有再看到其它对 <code class="language-plaintext highlighter-rouge">y</code> 的绑定，所以我们才能确信第二个 let 是 <code class="language-plaintext highlighter-rouge">y</code> 的定义位置，它是一个字符串。</p>
+<p>这难道不是很费事吗？更糟的是，这种人工扫描不是一次性的工作，每次看到这个变量，你都要疑惑一下它是什么东西，因为它可以被重新绑定，你必须重新确定一下它的定义。如果语言不允许在同一个作用域里面重复绑定同一个名字，你就根本不需要担心这个事情了。你只需要在作用域里面找到唯一的那个 <code class="language-plaintext highlighter-rouge">let y = ...</code>，那就是它的定义。</p>
 <p>也许你会说，只有当有人滥用这个特性的时候，才会导致问题。然而语言设计的问题往往就在于，一旦你允许某种奇葩的用法，就一定会有人自作聪明去用。因为你无法确信别人是否会那样做，所以你随时都得提高警惕，而不能放松下心情来。</p>
 <h3 id="类型推导">类型推导</h3>
 <p>另外一个很多人误解的地方是类型推导。在 Rust 和 C# 之类的语言里面，你不需要像 Java 那样写</p>
@@ -37,7 +37,7 @@
 <p>这样显式的指出变量的类型，而是可以让编译器把类型推导出来。比如你写：</p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>  <span class="c">// x 的类型推导为 i32</span>
 </code></pre></div></div>
-<p>编译器的类型推导就可以知道 <code class="highlighter-rouge">x</code> 的类型是 i32，而不需要你把“i32”写在那里。这似乎是一个很方便的东西。然而看过很多 C# 代码之后你发现，这看似方便，却让程序变得不好读。在看 C# 代码的时候，我经常看到一堆的变量定义，每一个的前面都是 var。我没法一眼就看出它们表示什么，是整数，bool，还是字符串，还是某个用户定义的类？</p>
+<p>编译器的类型推导就可以知道 <code class="language-plaintext highlighter-rouge">x</code> 的类型是 i32，而不需要你把“i32”写在那里。这似乎是一个很方便的东西。然而看过很多 C# 代码之后你发现，这看似方便，却让程序变得不好读。在看 C# 代码的时候，我经常看到一堆的变量定义，每一个的前面都是 var。我没法一眼就看出它们表示什么，是整数，bool，还是字符串，还是某个用户定义的类？</p>
 <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">correct</span> <span class="p">=</span> <span class="p">...;</span>
 <span class="kt">var</span> <span class="n">id</span> <span class="p">=</span> <span class="p">...;</span>
 <span class="kt">var</span> <span class="n">slot</span> <span class="p">=</span> <span class="p">...;</span>
@@ -51,20 +51,20 @@
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">6</span><span class="p">);</span>  <span class="c">// x has the value `()`, not `6`</span>
 </code></pre></div></div>
-<p>奇怪的是，这里变量 <code class="highlighter-rouge">x</code> 会得到一个值，空的 tuple，<code class="highlighter-rouge">()</code>。这种思路不大对，它是从像 OCaml 那样的语言照搬过来的，而 OCaml 本身就有问题。在 OCaml 里面，如果你使用 <code class="highlighter-rouge">print_string</code>，那你会得到如下的结果：</p>
+<p>奇怪的是，这里变量 <code class="language-plaintext highlighter-rouge">x</code> 会得到一个值，空的 tuple，<code class="language-plaintext highlighter-rouge">()</code>。这种思路不大对，它是从像 OCaml 那样的语言照搬过来的，而 OCaml 本身就有问题。在 OCaml 里面，如果你使用 <code class="language-plaintext highlighter-rouge">print_string</code>，那你会得到如下的结果：</p>
 <div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print_string</span> <span class="s">"hello world!</span><span class="se">\n</span><span class="s">"</span><span class="p">;;</span>
 <span class="n">hello</span> <span class="n">world</span><span class="o">!</span>
 <span class="o">-</span> <span class="o">:</span> <span class="n">unit</span> <span class="o">=</span> <span class="nb">()</span>
 </code></pre></div></div>
-<p>这里，<code class="highlighter-rouge">print_string</code> 是一个“动作”，它对应过程式语言里面的“statement”。就像 C 语言的 <code class="highlighter-rouge">printf</code>。动作通常只产生“副作用”，而不返回值。在 OCaml 里面，为了“理论的优雅”，动作也会返回一个值，这个值叫做 <code class="highlighter-rouge">()</code>。其实 <code class="highlighter-rouge">()</code> 相当于 C 语言的 void。C 语言里面有 void 类型，然而它却不允许你声明一个 void 类型的变量。比如你写</p>
+<p>这里，<code class="language-plaintext highlighter-rouge">print_string</code> 是一个“动作”，它对应过程式语言里面的“statement”。就像 C 语言的 <code class="language-plaintext highlighter-rouge">printf</code>。动作通常只产生“副作用”，而不返回值。在 OCaml 里面，为了“理论的优雅”，动作也会返回一个值，这个值叫做 <code class="language-plaintext highlighter-rouge">()</code>。其实 <code class="language-plaintext highlighter-rouge">()</code> 相当于 C 语言的 void。C 语言里面有 void 类型，然而它却不允许你声明一个 void 类型的变量。比如你写</p>
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
 <span class="kt">void</span> <span class="n">x</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 <p>程序是没法编译通过的（试一试？）。让人惊讶的是，古老的 C 的做法其实是正确的，这里有比较深入的原因。如果你把一个类型看成是一个集合（比如 int 是机器整数的集合），那么 void 所表示的集合是个空集，它里面是不含有任何元素的。声明一个 void 类型的变量是没有任何意义的，因为它不可能有一个值。如果一个函数返回 void，你是没法把它赋值给一个变量的。</p>
-<p>可是在 Rust 里面，不但动作（比如 <code class="highlighter-rouge">y = 6</code> ）会返回一个值 <code class="highlighter-rouge">()</code>，你居然可以把这个值赋给一个变量。其实这是错误的作法。原因在于 <code class="highlighter-rouge">y = 6</code> 只是一个“动作”，它只是把 6 放进变量 y 里面，这个动作发生了就发生了，它根本不应该返回一个值，它不应该可以出现在 <code class="highlighter-rouge">let x = (y = 6);</code> 的右边。就算你牵强附会说 <code class="highlighter-rouge">y = 6</code> 的返回值是 <code class="highlighter-rouge">()</code>，这个值是没有任何用处的。更不要说使用空的 tuple 来表示这个值，会引起更大的类型混淆，因为 <code class="highlighter-rouge">()</code> 本身有另外的，更有用的含义。</p>
-<p>你根本就不应该可以写 <code class="highlighter-rouge">let x = (y = 6);</code> 这样的代码。只有当你犯错误或者逻辑不清晰的时候，才有可能把 <code class="highlighter-rouge">y = 6</code> 当成一个值来用。Rust 允许你把这种毫无意义的返回值赋给一个变量，这种错误就没有被及时发现，反而能够通过变量传播到另外一个地方去。有时候这种错误会传播挺远，然后导致问题（运行时错误或者类型检查错误），可是当它出问题的时候，你就不大容易找到错误的起源了。</p>
+<p>可是在 Rust 里面，不但动作（比如 <code class="language-plaintext highlighter-rouge">y = 6</code> ）会返回一个值 <code class="language-plaintext highlighter-rouge">()</code>，你居然可以把这个值赋给一个变量。其实这是错误的作法。原因在于 <code class="language-plaintext highlighter-rouge">y = 6</code> 只是一个“动作”，它只是把 6 放进变量 y 里面，这个动作发生了就发生了，它根本不应该返回一个值，它不应该可以出现在 <code class="language-plaintext highlighter-rouge">let x = (y = 6);</code> 的右边。就算你牵强附会说 <code class="language-plaintext highlighter-rouge">y = 6</code> 的返回值是 <code class="language-plaintext highlighter-rouge">()</code>，这个值是没有任何用处的。更不要说使用空的 tuple 来表示这个值，会引起更大的类型混淆，因为 <code class="language-plaintext highlighter-rouge">()</code> 本身有另外的，更有用的含义。</p>
+<p>你根本就不应该可以写 <code class="language-plaintext highlighter-rouge">let x = (y = 6);</code> 这样的代码。只有当你犯错误或者逻辑不清晰的时候，才有可能把 <code class="language-plaintext highlighter-rouge">y = 6</code> 当成一个值来用。Rust 允许你把这种毫无意义的返回值赋给一个变量，这种错误就没有被及时发现，反而能够通过变量传播到另外一个地方去。有时候这种错误会传播挺远，然后导致问题（运行时错误或者类型检查错误），可是当它出问题的时候，你就不大容易找到错误的起源了。</p>
 <p>这是很多语言的通病，特别是像 JavaScript 或者 PHP 之类的语言。它们把毫无意义或者牵强附会的结果（比如 undefined）到处传播，结果使错误很难被发现和追踪。</p>
 <h3 id="return-语句">return 语句</h3>
 <p>Rust 的设计者似乎很推崇“面向表达式”的语言，所以在 Rust 里面你不需要直接写“return”这个语句。比如，这个<a href="https://doc.rust-lang.org/book/functions.html#early-returns">例子</a>里面，你可以直接这样写：</p>
@@ -122,7 +122,7 @@
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="n">foo</span><span class="o">&lt;</span><span class="nv">'a</span><span class="p">,</span> <span class="nv">'b</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="o">&amp;</span><span class="nv">'a</span> <span class="nb">str</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="o">&amp;</span><span class="nv">'b</span> <span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="o">&amp;</span><span class="nv">'a</span> <span class="nb">str</span> <span class="p">{</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>上一次我看 Rust 文档的时候，没发现有 lifetime 这概念。文档对此的介绍非常粗略，仔细看了也不知道他们在说些什么，更不要说相信这办法真的管用了。对不起，我根本不想去理解这些尖括号里的 <code class="highlighter-rouge">'a</code> 和 <code class="highlighter-rouge">'b</code> 是什么，除非你先向我证明这些东西真的能解决内存管理的问题。实际上这个 lifetime 我感觉像是跨过程静态分析时产生的一些标记，要知道静态分析是无法解决内存管理的问题的，我猜想这种 lifetime 在有递归函数的情况下就会遇到麻烦。</p>
+<p>上一次我看 Rust 文档的时候，没发现有 lifetime 这概念。文档对此的介绍非常粗略，仔细看了也不知道他们在说些什么，更不要说相信这办法真的管用了。对不起，我根本不想去理解这些尖括号里的 <code class="language-plaintext highlighter-rouge">'a</code> 和 <code class="language-plaintext highlighter-rouge">'b</code> 是什么，除非你先向我证明这些东西真的能解决内存管理的问题。实际上这个 lifetime 我感觉像是跨过程静态分析时产生的一些标记，要知道静态分析是无法解决内存管理的问题的，我猜想这种 lifetime 在有递归函数的情况下就会遇到麻烦。</p>
 <p>实际上我最开头看 Rust 的时候，它号称只用 move semantics 和好几种不同的指针，就可以解决内存管理的问题。可是一旦有了那几种不同的指针，就已经复杂不堪了，比 C 语言还要麻烦，而且显然不能解决问题。Lifetime 恐怕是后来发现有新的问题解决不了才加进去的，可是我不知道他们这次是不是又少考虑了某些情况。</p>
 <p>Rust 的设计者显然受了 <a href="https://en.wikipedia.org/wiki/Linear_logic">Linear Logic</a> 一类看似很酷的逻辑的启发和熏陶，想用类似的方式奇迹般的解决内存和资源的回收问题。然而研究过一阵子 Linear Logic 之后我发现，这个逻辑自己都没有解决任何问题，只不过给对象的引用方式施加了一些无端的限制，这样使得对象的引用计数是一个固定的值（1）。内存管理当然容易了，可是这样导致有很多程序你没法表达。</p>
 <p>开头让你感觉很有意思，似乎能解决一些小问题。到后来遇到大一点的实际问题的时候，你就发现需要引入越来越复杂的概念，使用越来越奇葩的写法，才能达到目的，而且你总是会在将来某个时候发现它没法解决的问题。因为这个问题很可能从根本上是无法解决的，所以每当遇到有超越现有能力的事情，你就得增加新的“绕过方法”（workaround）。缝缝补补，破败不堪。最后你发现，除了垃圾回收（GC）和引用计数（RC），内存管理还是没有其它更好更简单的办法。</p>

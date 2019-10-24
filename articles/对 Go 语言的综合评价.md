@@ -10,31 +10,31 @@
 <ul>
 <li>
 <p>进步：Go 有语法支持一种类似 struct literal 的构造，比如你可以写这样的代码来构造一个 S struct：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S { x: 1, y: 2, }
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S { x: 1, y: 2, }
 </code></pre></div>    </div>
 <p>这比起 Java 只能用构造函数来创建对象是一个不错的方便性上的改进。这些东西可能借鉴于 JavaScript 等语言的设计。</p>
 </li>
 <li>
-<p>倒退：类型放在变量后面，却没有分隔符。如果变量和它的类型写成像 Pascal 那样的，比如 <code class="highlighter-rouge">x : int</code>，那也许还好。然而 Go 的写法却是 <code class="highlighter-rouge">x int</code>，没有那个冒号，而且允许使用 <code class="highlighter-rouge">x, y int</code> 这样的写法。这种语法跟 var，函数参数组合在一起之后，就产生了扰乱视线的效果。比如你可以写一个函数是这样开头的：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  func foo(s string, x, y, z int, c bool) {
+<p>倒退：类型放在变量后面，却没有分隔符。如果变量和它的类型写成像 Pascal 那样的，比如 <code class="language-plaintext highlighter-rouge">x : int</code>，那也许还好。然而 Go 的写法却是 <code class="language-plaintext highlighter-rouge">x int</code>，没有那个冒号，而且允许使用 <code class="language-plaintext highlighter-rouge">x, y int</code> 这样的写法。这种语法跟 var，函数参数组合在一起之后，就产生了扰乱视线的效果。比如你可以写一个函数是这样开头的：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  func foo(s string, x, y, z int, c bool) {
     ...
   }
 </code></pre></div>    </div>
-<p>注意 x, y, z 那个位置，其实是很混淆的。因为看见 <code class="highlighter-rouge">x</code> 的时候我不能立即从后面那个符号（<code class="highlighter-rouge">, y</code>）看到它是什么类型。所以在 Go 里面我推荐的写法是把 <code class="highlighter-rouge">x</code> 和 <code class="highlighter-rouge">y</code> 完全分开，就像 C 和 Java 那样，不过类型写在后面：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  func foo(s string, x int, y int, z int, c bool) {
+<p>注意 x, y, z 那个位置，其实是很混淆的。因为看见 <code class="language-plaintext highlighter-rouge">x</code> 的时候我不能立即从后面那个符号（<code class="language-plaintext highlighter-rouge">, y</code>）看到它是什么类型。所以在 Go 里面我推荐的写法是把 <code class="language-plaintext highlighter-rouge">x</code> 和 <code class="language-plaintext highlighter-rouge">y</code> 完全分开，就像 C 和 Java 那样，不过类型写在后面：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  func foo(s string, x int, y int, z int, c bool) {
     ...
   }
 </code></pre></div>    </div>
 <p>这样一来就比较清晰了，虽然我愿意再多写一些冒号。每一个参数都是“名字 类型”的格式，所以我一眼就看到 x 是 int。虽然多打几个字，然而节省的是“眼球 parse 代码”的开销。</p>
 </li>
 <li>
-<p>倒退：类型语法。Go 使用像 <code class="highlighter-rouge">[]string</code> 这样的语法来表示类型。很多人说这种语法非常“一致”，但经过一段时间我却没有发现他们所谓的一致性在哪里。其实这样的语法很难读，因为类型的各部分之间没有明确的分隔标识符，如果和其他一些符号，比如 * 搭配在一起，你就需要知道一些优先级规则，然后费比较大的功夫去做“眼球 parse”。比如，在 Go 代码里你经常看到 <code class="highlighter-rouge">[]*Struct</code> 这样的类型，注意 <code class="highlighter-rouge">*Struct</code> 要先结合在一起，再作为 <code class="highlighter-rouge">[]</code> 的“类型参数”。这种语法缺乏足够的分隔符作为阅读的“边界信号”，一旦后面的类型变得复杂，就很难阅读了。比如，你可以有 <code class="highlighter-rouge">*[]*Struct</code> 或者 <code class="highlighter-rouge">*[]*pkg.Struct</code> 这样的类型。所以这其实还不如像 C++ 的 <code class="highlighter-rouge">vector&lt;struct*&gt;</code> 这样的写法，也就更不如 Java 或者 Typed Racket 的类型写法来得清晰和简单。</p>
+<p>倒退：类型语法。Go 使用像 <code class="language-plaintext highlighter-rouge">[]string</code> 这样的语法来表示类型。很多人说这种语法非常“一致”，但经过一段时间我却没有发现他们所谓的一致性在哪里。其实这样的语法很难读，因为类型的各部分之间没有明确的分隔标识符，如果和其他一些符号，比如 * 搭配在一起，你就需要知道一些优先级规则，然后费比较大的功夫去做“眼球 parse”。比如，在 Go 代码里你经常看到 <code class="language-plaintext highlighter-rouge">[]*Struct</code> 这样的类型，注意 <code class="language-plaintext highlighter-rouge">*Struct</code> 要先结合在一起，再作为 <code class="language-plaintext highlighter-rouge">[]</code> 的“类型参数”。这种语法缺乏足够的分隔符作为阅读的“边界信号”，一旦后面的类型变得复杂，就很难阅读了。比如，你可以有 <code class="language-plaintext highlighter-rouge">*[]*Struct</code> 或者 <code class="language-plaintext highlighter-rouge">*[]*pkg.Struct</code> 这样的类型。所以这其实还不如像 C++ 的 <code class="language-plaintext highlighter-rouge">vector&lt;struct*&gt;</code> 这样的写法，也就更不如 Java 或者 Typed Racket 的类型写法来得清晰和简单。</p>
 </li>
 <li>
 <p>倒退：过度地“语法重载”，比如 switch, for 等关键字。Go 的 switch 关键字其实包含了两种不同的东西。它可以是 C 里面的普通的 switch（Scheme 的 case），也可以是像 Scheme 的 cond 那样的嵌套分支语句。这两种语句其实是语义完全不同的，然而 Go 的设计者为了显得简单，把它们合二为一，而其实引起了更大的混淆。这是因为，就算你把它们合二为一，它们仍然是两种不同的语义结构。把它们合并的结果是，每次看到 switch 你都需要从它们“头部”的不同点把这两种不同的结构区分开来，增加了人脑的开销。正确的作法是把它们分开，就像 Scheme 那样。其实我设计语言的时候有时候也犯同样的错误，以为两个东西“本质”上是一样的，所以合二为一，结果经过一段时间，发现其实是不一样的。所以不要小看了 Scheme，很多你认为是“新想法”的东西，其实早就被它那非常严谨的委员会给抛弃在了历史的长河中。</p>
 </li>
 </ul>
-<p>Go 语言里面还有其他一些语法设计问题，比如强制把 <code class="highlighter-rouge">{</code> 放在一行之后而且不能换行，if 语句的判断开头可以嵌套赋值操作等等。这些试图让程序显得短小的作法，其实反而降低了程序理解的流畅度。</p>
+<p>Go 语言里面还有其他一些语法设计问题，比如强制把 <code class="language-plaintext highlighter-rouge">{</code> 放在一行之后而且不能换行，if 语句的判断开头可以嵌套赋值操作等等。这些试图让程序显得短小的作法，其实反而降低了程序理解的流畅度。</p>
 <p>所以总而言之，Go 的语法很难被叫做“简单”或者“优雅”，它的简单性其实在 Java 之下。</p>
 <h3 id="工具链">工具链</h3>
 <p>Go 提供了一些比较方便的工具。比如 gofmt，godef 等，使得 Go 代码的编程比起单用 Emacs 或者 VIM 来编辑 C 和 C++ 来说是一个进步。使用 Emacs 编辑 Go 就已经能实现某些 IDE 才有的功能，比如精确的定义跳转等等。</p>
@@ -55,34 +55,34 @@
 <p>Go 和 Unix 系统一样，在出现的早期就已经因为不吸取前人的教训，背上了沉重的历史包袱。</p>
 <h3 id="多返回值">多返回值</h3>
 <p>很多人都觉得 Go 的多返回值设计是一个进步，然而这里面却有很多蹊跷的东西。且不说这根本不是什么新东西（Scheme 很早就有了多返回值 let-values），Go 的多返回值却被大量的用在了错误的地方—Go 利用多返回值来表示出错信息。比如 Go 代码里最常见的结构就是：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ret, err := foo(x, y, z)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ret, err := foo(x, y, z)
 if err != nil {
 	return err
 }
 </code></pre></div></div>
-<p>如果 <code class="highlighter-rouge">foo</code> 的调用产生了错误，那么 <code class="highlighter-rouge">err</code> 就不是 nil。Go 要求你在定义了变量之后必须使用它，否则报错。这样它“碰巧”避免了出现错误 <code class="highlighter-rouge">err</code> 而不检查的情况。否则如果你想忽略错误，就必须写成</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ret, _ := foo(x, y, z)
+<p>如果 <code class="language-plaintext highlighter-rouge">foo</code> 的调用产生了错误，那么 <code class="language-plaintext highlighter-rouge">err</code> 就不是 nil。Go 要求你在定义了变量之后必须使用它，否则报错。这样它“碰巧”避免了出现错误 <code class="language-plaintext highlighter-rouge">err</code> 而不检查的情况。否则如果你想忽略错误，就必须写成</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ret, _ := foo(x, y, z)
 </code></pre></div></div>
 <p>这样当 foo 出错的时候，程序就会自动在那个位置当掉。</p>
-<p>不得不说，这种“歪打正着”的做法虽然貌似可行，从类型系统角度看，却是非常不严谨的。因为它根本不是为了这个目的而设计的，所以你可以比较容易的想出各种办法让它失效。而且由于编译器只检查 <code class="highlighter-rouge">err</code> 是否被“使用”，却不检查你是否检查了“所有”可能出现的错误类型。比如，如果 foo 可能返回两种错误 Error1 和 Error2，你没法保证调用者完全排除了这两种错误的可能性之后才使用数据。所以这种错误检查机制其实还不如 Java 的 exception 来的严谨。</p>
-<p>另外，<code class="highlighter-rouge">ret</code> 和 <code class="highlighter-rouge">err</code> 同时被定义，而每次只有其中一个不是 nil，这种“或”的关系并不是靠编译器来保障，而是靠程序员的“约定俗成”。这样当 <code class="highlighter-rouge">err</code> 不是 nil 的时候，<code class="highlighter-rouge">ret</code> 其实也可以不是 nil。这些组合带来了挺多的混淆，让你每次看到 return 的地方都不确信它到底想返回一个错误还是一个有效值。如果你意识到这种“或”关系其实意味着你只应该用一个返回值来表示它们，你就知道其实 Go 误用了多返回值来表示可能的错误。</p>
+<p>不得不说，这种“歪打正着”的做法虽然貌似可行，从类型系统角度看，却是非常不严谨的。因为它根本不是为了这个目的而设计的，所以你可以比较容易的想出各种办法让它失效。而且由于编译器只检查 <code class="language-plaintext highlighter-rouge">err</code> 是否被“使用”，却不检查你是否检查了“所有”可能出现的错误类型。比如，如果 foo 可能返回两种错误 Error1 和 Error2，你没法保证调用者完全排除了这两种错误的可能性之后才使用数据。所以这种错误检查机制其实还不如 Java 的 exception 来的严谨。</p>
+<p>另外，<code class="language-plaintext highlighter-rouge">ret</code> 和 <code class="language-plaintext highlighter-rouge">err</code> 同时被定义，而每次只有其中一个不是 nil，这种“或”的关系并不是靠编译器来保障，而是靠程序员的“约定俗成”。这样当 <code class="language-plaintext highlighter-rouge">err</code> 不是 nil 的时候，<code class="language-plaintext highlighter-rouge">ret</code> 其实也可以不是 nil。这些组合带来了挺多的混淆，让你每次看到 return 的地方都不确信它到底想返回一个错误还是一个有效值。如果你意识到这种“或”关系其实意味着你只应该用一个返回值来表示它们，你就知道其实 Go 误用了多返回值来表示可能的错误。</p>
 <p>其实如果一个语言有了像 <a href="http://docs.racket-lang.org/ts-guide">Typed Racket</a> 和 <a href="http://yinwang0.wordpress.com/2010/09/12/pysonar">PySonar</a> 所支持的 “union type”类型系统，这种多返回值就没有意义了。因为如果有了 union type，你就可以只用一个返回值来表示有效数据或者错误。比如你可以写一个类型叫做 {String, FileNotFound}，用于表示一个值要么是 String，要么是 FileNotFound 错误。如果一个函数有可能返回错误，编译器就强制程序员检查所有可能出现的错误之后才能使用数据，从而可以完全避免以上的各种混淆情况。对 union type 有兴趣的人可以看看 Typed Racket，它拥有我迄今为止见过最强大的类型系统（超越了 Haskell）。</p>
 <p>所以可以说，Go 的这种多返回值，其实是“歪打”打着了一半，然后换着法子继续歪打，而不是瞄准靶心。</p>
 <h3 id="接口">接口</h3>
 <p>Go 采用了基于接口（interface）的面向对象设计，你可以使用接口来表达一些想要进行抽象的概念。</p>
 <p>然而这种接口设计却不是没有问题的。首先跟 Java 不同，实现一个 Go 的接口不需要显式的声明（implements），所以你有可能“碰巧”实现了某个接口。这种不确定性对于理解程序来说是有反作用的。有时候你修改了一个函数之后就发现编译不通过，抱怨某个位置传递的不是某个需要的接口，然而出错信息却不能告诉你准确的原因。要经过一番摸索你才发现你的 struct  为什么不再实现之前定义的一个接口。</p>
 <p>另外，有些人使用接口，很多时候不过是为了传递一些函数作为参数。我有时候不明白，这种对于函数式语言再简单不过的事情，在 Go 语言里面为什么要另外定义一个接口来实现。这使得程序不如函数式语言那么清晰明了，而且修改起来也很不方便。有很多冗余的名字要定义，冗余的工作要做。</p>
-<p>举一个相关的例子就是 Go 的 <a href="http://golang.org/pkg/sort">Sort</a> 函数。每一次需要对某种类型 <code class="highlighter-rouge">T</code> 的数组排序，比如 <code class="highlighter-rouge">[]string</code>，你都需要</p>
+<p>举一个相关的例子就是 Go 的 <a href="http://golang.org/pkg/sort">Sort</a> 函数。每一次需要对某种类型 <code class="language-plaintext highlighter-rouge">T</code> 的数组排序，比如 <code class="language-plaintext highlighter-rouge">[]string</code>，你都需要</p>
 <ol>
-<li>定义另外一个类型，通常叫做 <code class="highlighter-rouge">TSorter</code>，比如 <code class="highlighter-rouge">StringSorter</code></li>
-<li>为这个 <code class="highlighter-rouge">StringSorter</code> 类型定义三个方法，分别叫做 <code class="highlighter-rouge">Len</code>, <code class="highlighter-rouge">Swap</code>, <code class="highlighter-rouge">Less</code></li>
-<li>把你的类型比如 <code class="highlighter-rouge">[]string</code> cast 成 <code class="highlighter-rouge">StringSorter</code></li>
-<li>调用 <code class="highlighter-rouge">sort.Sort</code> 对这个数组排序</li>
+<li>定义另外一个类型，通常叫做 <code class="language-plaintext highlighter-rouge">TSorter</code>，比如 <code class="language-plaintext highlighter-rouge">StringSorter</code></li>
+<li>为这个 <code class="language-plaintext highlighter-rouge">StringSorter</code> 类型定义三个方法，分别叫做 <code class="language-plaintext highlighter-rouge">Len</code>, <code class="language-plaintext highlighter-rouge">Swap</code>, <code class="language-plaintext highlighter-rouge">Less</code></li>
+<li>把你的类型比如 <code class="language-plaintext highlighter-rouge">[]string</code> cast 成 <code class="language-plaintext highlighter-rouge">StringSorter</code></li>
+<li>调用 <code class="language-plaintext highlighter-rouge">sort.Sort</code> 对这个数组排序</li>
 </ol>
 <p>想想 sort 在函数式语言里有多简单吧？比如，Scheme 和 OCaml 都可以直接这样写：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(sort '(3 4 1 2) &lt;)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(sort '(3 4 1 2) &lt;)
 </code></pre></div></div>
-<p>这里 Scheme 把函数 <code class="highlighter-rouge">&lt;</code> 直接作为参数传给 sort 函数，而没有包装在什么接口里面。你发现了吗，Go 的那个 interface 里面的三个方法，其实本来应该作为三个参数直接传递给 Sort，但由于受到 design pattern 等思想的局限，Go 的设计者把它们“打包”作为接口来传递。而且由于 Go 没有 generics，你无法像函数式语言一样写这三个函数，接受比较的“元素”作为参数，而必须使用它们的“下标”。由于这些方法只接受下标作为参数，所以 Sort 只能对数组进行排序。另外由于 Go 的设计比较“底层”，所以你需要另外两个参数: len 和 swap。</p>
+<p>这里 Scheme 把函数 <code class="language-plaintext highlighter-rouge">&lt;</code> 直接作为参数传给 sort 函数，而没有包装在什么接口里面。你发现了吗，Go 的那个 interface 里面的三个方法，其实本来应该作为三个参数直接传递给 Sort，但由于受到 design pattern 等思想的局限，Go 的设计者把它们“打包”作为接口来传递。而且由于 Go 没有 generics，你无法像函数式语言一样写这三个函数，接受比较的“元素”作为参数，而必须使用它们的“下标”。由于这些方法只接受下标作为参数，所以 Sort 只能对数组进行排序。另外由于 Go 的设计比较“底层”，所以你需要另外两个参数: len 和 swap。</p>
 <p>其实这种基于接口的设计其实比起函数式语言，差距是很大的。比起 Java 的接口设计，也可以说是一个倒退。</p>
 <h3 id="goroutine">goroutine</h3>
 <p>Goroutine 可以说是 Go 的最重要的特色。很多人使用 Go 就是听说 goroutine 能支持所谓的“大并发”。</p>
@@ -97,15 +97,15 @@ if err != nil {
 <p>Go 的标准库的设计里面带有浓郁的 Unix 气息。比起 Java 之类的语言，它的库代码有很多不方便的地方。有时候引入了一些函数式语言的方式，但却由于 Unix 思维的限制，不但没能发挥函数式语言的优点，而且导致了很多理解的复杂性。</p>
 <p>一个例子就是 Go 处理字符串的方式。在 Java 里每个字符串里包含的字符，缺省都是 Unicode 的“code point”。然而在 Go 里面 string 类型里面每个元素都是一个 byte，所以每次你都得把它 cast 成“rune”类型才能正确的遍历每个字符，然后 cast 回去。这种把任何东西都看成 byte 的方式，就是 Unix 的思维方式，它引起过度底层和复杂的代码。</p>
 <h3 id="html-template-库">HTML template 库</h3>
-<p>我使用过 Go 的 template library 来生成一些网页。这是一种“基本可用”的模板方式，然而比起很多其他成熟的技术，却是相当的不足的。让我比较惊讶的是，Go 的 template 里面夹带的代码，居然不是 Go 语言自己，而是一种表达能力相当弱的语言，有点像一种退化的 Lisp，只不过把括号换成了  <code class="highlighter-rouge">{ {...} }</code> 这样的东西。</p>
+<p>我使用过 Go 的 template library 来生成一些网页。这是一种“基本可用”的模板方式，然而比起很多其他成熟的技术，却是相当的不足的。让我比较惊讶的是，Go 的 template 里面夹带的代码，居然不是 Go 语言自己，而是一种表达能力相当弱的语言，有点像一种退化的 Lisp，只不过把括号换成了  <code class="language-plaintext highlighter-rouge">{ {...} }</code> 这样的东西。</p>
 <p>比如你可以写这样的网页模板：</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ {define "Contents"} }
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ {define "Contents"} }
 { {if .Paragraph.Length} }
 &lt;p&gt;{ {.Paragraph.Content} }&lt;/p&gt;
 { {end} }
 { {end} }
 </code></pre></div></div>
-<p>由于每个模板接受一个 struct 作为填充的数据，你可以使用 <code class="highlighter-rouge">.Paragraph.Content</code> 这样的代码，然而这不但很丑陋，而且让模板不灵活，不好理解。你需要把需要的数据全都放进同一个结构才能从模板里面访问它们。</p>
+<p>由于每个模板接受一个 struct 作为填充的数据，你可以使用 <code class="language-plaintext highlighter-rouge">.Paragraph.Content</code> 这样的代码，然而这不但很丑陋，而且让模板不灵活，不好理解。你需要把需要的数据全都放进同一个结构才能从模板里面访问它们。</p>
 <p>任何超过一行的代码，虽然也许这语言可以表达，一般人为了避免这语言的弱点，还是在 .go 文件里面写一些“帮助函数”。用它们产生数据放进结构，然后传给模板，才能够表达模板需要的一些信息。而这每个帮助函数又需要一定的“注册”信息才能被模板库找到。所以这些复杂性加起来，使得 Go 的 HTML 模板代码相当的麻烦和混乱。</p>
 <p>听说有人在做一个新的 HTML 模板系统，可以支持直接的 Go 代码嵌入。这些工作刚刚起步，而且难说最后会做成什么样子。所以要做网站，恐怕还是最好使用其他语言比较成熟的框架。</p>
 <h3 id="总结">总结</h3>
