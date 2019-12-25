@@ -6,5 +6,4 @@ project from [kurisu project](https://kuricat.com/project)
 
 // TODO 
 * http://www.ctex.org/documents/shredder/linux.html
-* 
 * http://www.ctex.org/documents/shredder/
