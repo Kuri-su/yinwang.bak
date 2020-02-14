@@ -20,4 +20,15 @@
 <p>另外，Coverity 的创始人 Andy Chou 这个人对我其实不错，可惜即使作为创始人，他当时似乎并没有掌握公司的实权。据公司早期员工口述，Coverity 本来是个不错的公司，自负盈亏。可是在一次经济危机的时候遇到了困难，所以第一次引入了 VC 投资，随后就被 VC 控制了。VC 进入之后，公司的 VP Engineering 被忽然的，非常不人道的解职。在新上任的 VP 领导下，公司完全变了样，最后成了我所描述的样子。</p>
 <p>现在 Coverity 已经被 Synopsys 收购，然而据我调查，工程团队的领导班子并没有变，还是原来那两个 manager。不过我还是祝愿在 Synopsys 的领导下，这个公司的管理会有所改善。创始人 Andy Chou 赚了点钱，已经不再管理这个公司，开始做天使投资人。在被 VC 控制的日子里，他应该也没少忧虑，我希望他在将来的日子里快乐自在的生活。在 Coverity 我遇到了实行高压的 manager，非常讨厌的自大狂，但也遇到了一些友好的同事：Aaron，Dzin，Eric，…… 我希望他们一切都好。</p>
 </div>
+<div class="ad-banner" style="margin-top: 5px">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+                    style="display:inline-block;width:100%;height:90px"
+                    data-ad-client="ca-pub-1331524016319584"
+                    data-ad-slot="6657867155"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<script data-ad-client="ca-pub-1331524016319584" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
     

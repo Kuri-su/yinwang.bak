@@ -10,20 +10,20 @@
 <ul>
 <li>
 <p>进步：Go 有语法支持一种类似 struct literal 的构造，比如你可以写这样的代码来构造一个 S struct：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S { x: 1, y: 2, }
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="p">{</span> <span class="n">x</span><span class="o">:</span> <span class="m">1</span><span class="p">,</span> <span class="n">y</span><span class="o">:</span> <span class="m">2</span><span class="p">,</span> <span class="p">}</span>
 </code></pre></div>    </div>
 <p>这比起 Java 只能用构造函数来创建对象是一个不错的方便性上的改进。这些东西可能借鉴于 JavaScript 等语言的设计。</p>
 </li>
 <li>
 <p>倒退：类型放在变量后面，却没有分隔符。如果变量和它的类型写成像 Pascal 那样的，比如 <code class="language-plaintext highlighter-rouge">x : int</code>，那也许还好。然而 Go 的写法却是 <code class="language-plaintext highlighter-rouge">x int</code>，没有那个冒号，而且允许使用 <code class="language-plaintext highlighter-rouge">x, y int</code> 这样的写法。这种语法跟 var，函数参数组合在一起之后，就产生了扰乱视线的效果。比如你可以写一个函数是这样开头的：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  func foo(s string, x, y, z int, c bool) {
-    ...
-  }
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="n">foo</span><span class="p">(</span><span class="n">s</span> <span class="kt">string</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="kt">int</span><span class="p">,</span> <span class="n">c</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">...</span>
+<span class="p">}</span>
 </code></pre></div>    </div>
 <p>注意 x, y, z 那个位置，其实是很混淆的。因为看见 <code class="language-plaintext highlighter-rouge">x</code> 的时候我不能立即从后面那个符号（<code class="language-plaintext highlighter-rouge">, y</code>）看到它是什么类型。所以在 Go 里面我推荐的写法是把 <code class="language-plaintext highlighter-rouge">x</code> 和 <code class="language-plaintext highlighter-rouge">y</code> 完全分开，就像 C 和 Java 那样，不过类型写在后面：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  func foo(s string, x int, y int, z int, c bool) {
-    ...
-  }
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">func</span> <span class="n">foo</span><span class="p">(</span><span class="n">s</span> <span class="kt">string</span><span class="p">,</span> <span class="n">x</span> <span class="kt">int</span><span class="p">,</span> <span class="n">y</span> <span class="kt">int</span><span class="p">,</span> <span class="n">z</span> <span class="kt">int</span><span class="p">,</span> <span class="n">c</span> <span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+<span class="o">...</span>
+<span class="p">}</span>
 </code></pre></div>    </div>
 <p>这样一来就比较清晰了，虽然我愿意再多写一些冒号。每一个参数都是“名字 类型”的格式，所以我一眼就看到 x 是 int。虽然多打几个字，然而节省的是“眼球 parse 代码”的开销。</p>
 </li>
@@ -55,13 +55,13 @@
 <p>Go 和 Unix 系统一样，在出现的早期就已经因为不吸取前人的教训，背上了沉重的历史包袱。</p>
 <h3 id="多返回值">多返回值</h3>
 <p>很多人都觉得 Go 的多返回值设计是一个进步，然而这里面却有很多蹊跷的东西。且不说这根本不是什么新东西（Scheme 很早就有了多返回值 let-values），Go 的多返回值却被大量的用在了错误的地方—Go 利用多返回值来表示出错信息。比如 Go 代码里最常见的结构就是：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ret, err := foo(x, y, z)
-if err != nil {
-	return err
-}
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ret</span><span class="p">,</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+<span class="k">return</span> <span class="n">err</span>
+<span class="p">}</span>
 </code></pre></div></div>
 <p>如果 <code class="language-plaintext highlighter-rouge">foo</code> 的调用产生了错误，那么 <code class="language-plaintext highlighter-rouge">err</code> 就不是 nil。Go 要求你在定义了变量之后必须使用它，否则报错。这样它“碰巧”避免了出现错误 <code class="language-plaintext highlighter-rouge">err</code> 而不检查的情况。否则如果你想忽略错误，就必须写成</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ret, _ := foo(x, y, z)
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ret</span><span class="p">,</span> <span class="n">_</span> <span class="o">:=</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
 </code></pre></div></div>
 <p>这样当 foo 出错的时候，程序就会自动在那个位置当掉。</p>
 <p>不得不说，这种“歪打正着”的做法虽然貌似可行，从类型系统角度看，却是非常不严谨的。因为它根本不是为了这个目的而设计的，所以你可以比较容易的想出各种办法让它失效。而且由于编译器只检查 <code class="language-plaintext highlighter-rouge">err</code> 是否被“使用”，却不检查你是否检查了“所有”可能出现的错误类型。比如，如果 foo 可能返回两种错误 Error1 和 Error2，你没法保证调用者完全排除了这两种错误的可能性之后才使用数据。所以这种错误检查机制其实还不如 Java 的 exception 来的严谨。</p>
@@ -80,7 +80,7 @@ if err != nil {
 <li>调用 <code class="language-plaintext highlighter-rouge">sort.Sort</code> 对这个数组排序</li>
 </ol>
 <p>想想 sort 在函数式语言里有多简单吧？比如，Scheme 和 OCaml 都可以直接这样写：</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(sort '(3 4 1 2) &lt;)
+<div class="language-scheme highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nf">sort</span> <span class="o">'</span><span class="p">(</span><span class="nf">3</span> <span class="mi">4</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">&lt;</span><span class="p">)</span>
 </code></pre></div></div>
 <p>这里 Scheme 把函数 <code class="language-plaintext highlighter-rouge">&lt;</code> 直接作为参数传给 sort 函数，而没有包装在什么接口里面。你发现了吗，Go 的那个 interface 里面的三个方法，其实本来应该作为三个参数直接传递给 Sort，但由于受到 design pattern 等思想的局限，Go 的设计者把它们“打包”作为接口来传递。而且由于 Go 没有 generics，你无法像函数式语言一样写这三个函数，接受比较的“元素”作为参数，而必须使用它们的“下标”。由于这些方法只接受下标作为参数，所以 Sort 只能对数组进行排序。另外由于 Go 的设计比较“底层”，所以你需要另外两个参数: len 和 swap。</p>
 <p>其实这种基于接口的设计其实比起函数式语言，差距是很大的。比起 Java 的接口设计，也可以说是一个倒退。</p>
@@ -114,4 +114,15 @@ if err != nil {
 <p>Alan Perlis 说，语言设计不应该是把功能堆积起来，而应该努力地减少弱点。从这种角度来看，Go 语言引入了一两个新的功能，同时又引入了相当多的弱点。</p>
 <p>Go 也许暂时在某些个别的情况有特殊的强项，可以单独用于优化系统的某些部分，但我不推荐使用 Go 来实现复杂的算法和整个的系统。</p>
 </div>
+<div class="ad-banner" style="margin-top: 5px">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+                    style="display:inline-block;width:100%;height:90px"
+                    data-ad-client="ca-pub-1331524016319584"
+                    data-ad-slot="6657867155"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<script data-ad-client="ca-pub-1331524016319584" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
     

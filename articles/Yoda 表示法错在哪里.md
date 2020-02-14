@@ -33,4 +33,15 @@ if (theSky != NULL) ...
 <p>这里假设你想打 <code class="language-plaintext highlighter-rouge">=</code>，却不小心打成了 <code class="language-plaintext highlighter-rouge">:=</code>。机会虽然小，但是仍然有可能。而我推荐的解决方案，会让你故意想犯错误都不可能，编译器会拒绝接受你的程序。</p>
 <p>所以你看到了，问题的根源其实不在于赋值操作的名字，而是有更深的原因。</p>
 </div>
+<div class="ad-banner" style="margin-top: 5px">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+                    style="display:inline-block;width:100%;height:90px"
+                    data-ad-client="ca-pub-1331524016319584"
+                    data-ad-slot="6657867155"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<script data-ad-client="ca-pub-1331524016319584" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>
     
