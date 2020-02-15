@@ -82,7 +82,6 @@
 <p>这也怪我自己太客气吧，总是试图尊重每一个人，给人留面子。吸收了这个教训之后，以后再遇到类似情况，这种人恐怕当场就没那么好受了。</p>
 <p>一个朋友在阿里内部查了这个人，是一个 P10，对我说：“这项目组好可怜。这么好的事被某人给破坏了！” 据了解，此人以前是 Facebook 的第一个华人员工，他的 FB 工牌上写着“The Greatest Computer Scientist”（最伟大的计算机科学家）。自视如此之高，有如此的表现也不足为奇了吧。</p>
 </div>
-<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -91,7 +90,6 @@
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>

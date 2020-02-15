@@ -24,7 +24,6 @@
 <p>在解决了所有的谜题之后，我回味了一下，自己为什么欣赏 Braid。这也许是因为它符合一个优秀的，非低级趣味的游戏设计：屈指可数的简单规则，却可以组合起来，制造出许许多多的变化。</p>
 <p>你只有3种超能力，但是如何利用和“组合”这些超能力，却形成了解决谜题的关键。有些题目很有点难度，以至于你会希望有第4种超能力出现，或者希望捡到别的什么“法宝”。可是它们是不存在的。你必须使用那仅有的3种能力，加上巧妙的思索，细心的观察，才能达到目的。在解决了一个很难的谜题之后，你往往会一拍脑袋：哇，我怎么一开头没想到！</p>
 </div>
-<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -33,7 +32,6 @@
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>

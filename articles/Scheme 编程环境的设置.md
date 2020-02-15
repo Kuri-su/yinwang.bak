@@ -114,7 +114,6 @@ sudo make install
 <p><img src="http://www.yinwang.org/images/scheme-paren.jpeg" width="95%" /></p>
 <p>好了，这就是我写 Scheme 的所有配置了。希望这些有所帮助。</p>
 </div>
-<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -123,7 +122,6 @@ sudo make install
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
-        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
