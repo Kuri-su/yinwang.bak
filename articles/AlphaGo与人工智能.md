@@ -36,6 +36,7 @@
 <p><a href="http://www.dailymail.co.uk/sciencetech/article-3491916/Google-admits-self-driving-car-got-wrong-Bus-crash-caused-software-trying-predict-driver-do.html"><img src="http://upload-images.jianshu.io/upload_images/68562-585cdc79ddbab240.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400" /></a></p>
 <p>为AlphaGo热血沸腾的人们，别再沉迷于自动车和Skynet之类的幻想了。看清AI和“神经网络”的实质，用它们来做点有用的东西就可以，没必要对实现“人类智能”抱太大的希望。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -44,6 +45,7 @@
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>

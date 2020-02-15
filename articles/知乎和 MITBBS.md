@@ -10,6 +10,7 @@
 <p>很多人误以为可以在知乎上学到知识，而其实上面很多看似“知识”的东西都是有误导性质的，不科学也不准确。我从来不上知乎获得任何信息。我用搜索引擎偶尔会搜出知乎上的内容，然而比较其它网站的内容，特别是英文的，我发现知乎上的很多信息都是错误的，照着上面的说法做，往往会误入歧途，事倍功半，甚至损害自己。</p>
 <p>所以呢，MITBBS 和知乎在我心目中，处于被完全忽略的地位。那上面的人无论怎么装逼，无论怎么黑我，对我没有任何作用，因为我并不把它们当成“人”来对待。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -18,6 +19,7 @@
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>

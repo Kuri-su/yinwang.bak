@@ -150,6 +150,7 @@
 <p>汽车的设计，很多方面关系到人的生命安全。车上的各种设备，为什么是那个形状，为什么在那个位置，很多都是有理由的。不是你想它是个什么样子，就可以是什么样子的。很多这些经验甚至可能是用生命换来的，经历了战火和各种恶劣环境的考验。这真的不是一个新的公司短短几年就可以摸索清楚的。</p>
 <p>有些设计貌似很新，很酷，很未来，像科幻电影里面的一样。直到你开始用它，才发现是有问题的。很多人把Elon Musk比作<a href="http://www.imdb.com/title/tt0371746">钢铁侠</a>，然而他们没有意识到，科幻和现实是有很大区别的。Elon Musk的背景（物理系PhD辍学），也许可以做出高性能的电动机，然而一辆汽车除了发动机，还有很多关键的方面。忘记历史就等于毁灭未来，标新立异，不吸取前人的经验教训，把好的东西学过来，这样做设计是很难成功的。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -158,6 +159,7 @@
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>

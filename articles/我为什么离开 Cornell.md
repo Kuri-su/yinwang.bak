@@ -9,6 +9,7 @@
 <p>所谓的“牛校”，恐怕都是这样吧。学生对于它们只是一种成为“牛校”的工具。你拼着命要进来，好我让你进来。但是我不教你，我让你拼死的做作业。如果你做出来了，我就拿最偏最扯淡的试卷来考你。如果你通过了所有这些，那我就给你一个学位。你得到了这样的“荣誉”，自然就会说“我的学校很牛”。你不敢说它不牛，因为那样就是说你也不牛了。所以这样的学校其实什么也不用干，你能学会东西能毕业，全都是靠你自己，到时候你却要把功劳都归到学校头上。天底下就是有这样好的生意。</p>
 <p>曾经有一个 Cornell 的校友跟我是朋友。当我提到 Cornell 的一些事，他总是像个老师一样，上气不接下气地“教育”我，也就是说类似家丑不可外扬的意思吧。“牛校”就是一种传染病，在你还没进去之前就已经埋下病种，当你进去之后它就开始蔓延，等你毕业很多年，它仍然与你同在。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -17,6 +18,7 @@
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>

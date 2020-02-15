@@ -15,6 +15,7 @@
 <p>所以在这种情况下，Tesla 虽然事先有“免责声明”，把责任全都推在用户头上，在法庭上其实仍然可以败诉，因为他们对用户提出的要求是不切实际的，没有人能够在上述 autopilot 判断错误情况下及时的接管过来。我建议这起车祸死者的家属把 Tesla 告上法庭，要求巨额赔偿。我也建议所有 Tesla 的车主，为了对自己和他人的生命负责，请关闭 autopilot 这个功能！Tesla 根本就不懂如何设计自动驾驶系统，技术不过硬，设计有缺陷，基本就是个玩具。生命很宝贵，用自己的生命来给所谓的“新技术”做试验品，是不值得的。</p>
 <p>珍爱生命，远离 autopilot！</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -23,6 +24,7 @@
                     data-ad-slot="6657867155"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+        -->
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
