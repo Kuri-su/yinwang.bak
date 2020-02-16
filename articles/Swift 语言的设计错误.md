@@ -55,6 +55,7 @@ var b = a
 <h3 id="java-有-value-type-吗">Java 有 value type 吗？</h3>
 <p>有人看了以上的内容，问我：“你说 Java 只有 reference type，但是根据 Java 的<a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">官方文档</a>，Java 也有 value type 和 reference type 的区别的。” 由于这个问题相当的有趣，我另外写了一篇<a href="http://www.yinwang.org/blog-cn/2016/06/08/java-value-type">文章</a>来回答这个问题。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -66,4 +67,5 @@ var b = a
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     
