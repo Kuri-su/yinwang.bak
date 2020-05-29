@@ -92,7 +92,7 @@
 <span class="p">}</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
 <span class="c">// 做很多事...</span>
-<span class="n">x</span> <span class="err">/</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
