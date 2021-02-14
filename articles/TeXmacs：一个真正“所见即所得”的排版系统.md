@@ -31,7 +31,6 @@
 <p>想要迅速的掌握 TeXmacs 的基本用法，可以参考我绘制的 <a href="http://www.mindomo.com/view.htm?m=b207992c90c046bdbe4053cbdf88b5d5">TeXmacs 思维导图</a>：</p>
 <p><a href="http://www.mindomo.com/view.htm?m=b207992c90c046bdbe4053cbdf88b5d5"><img src="http://www.yinwang.org/images/texmacs-mindmap.png" width="90%" /></a></p>
 </div>
-<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -43,5 +42,4 @@
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
-        -->
     

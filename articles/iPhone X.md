@@ -60,7 +60,6 @@
 <p>虽然如此，我们仍然可以买 iPhone 6, 7, 8，不是吗？我有一种感觉，那就是 iPhone X 将会成为这个新系列 iPhone 的最后一版。在 iPhone 7 的时候，我就在开始犹豫要不要再买新的 iPhone，现在很显然我不会换成 iPhone X 了。</p>
 <p>（如果你喜欢这篇文章，可以考虑<a href="http://www.yinwang.org/blog-cn/2016/04/13/pay-blog">付款购买</a>它，或者你可以购买 <a href="http://www.yinwang.org/blog-cn/2017/10/22/double11">CIIA 一号报告</a>。）</p>
 </div>
-<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -72,5 +71,4 @@
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
-        -->
     
