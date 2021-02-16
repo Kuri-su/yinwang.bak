@@ -10,6 +10,7 @@
 <p><img src="http://www.yinwang.org/images/hackathon.png" width="70%" /></p>
 <p>确实挺符合我的经历的。希望这就是我的最后一次 Hackathon 经历吧。下次不要再误入类似活动的场所了 :)</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -21,4 +22,5 @@
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     

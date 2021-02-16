@@ -31,6 +31,7 @@ str -&gt; ?
 <p><a href="https://sourcegraph.com/github.com/yinwang0/psydiff/panel/badges"><img src="http://www.yinwang.org/resources/badge-image-url.png" width="80%" /></a></p>
 <p>Sourcegraph 的功能虽然非常强劲，但是很多设计的工作还处于起步阶段。如果你有什么建议或者发现问题，请联系我们：hi@sourcegraph.com.</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -42,4 +43,5 @@ str -&gt; ?
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     

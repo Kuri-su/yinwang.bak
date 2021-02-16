@@ -42,6 +42,7 @@
 <p>这种天才病的危害在于，它蒙蔽了这些人的眼睛。他们不再能设计出让“普通人”可以容易使用的产品。如果你不会用，他们就会嘲笑你笨，而其实呢，是因为他们的设计不好。他们喜欢用含混晦涩的方式（所谓“函数式”）的写法来构造代码，让其它人阅读和修改都极其困难。</p>
 <p>这些所谓天才，看不到简单直观的解决方案，为了显示自己的聪明而采用繁复的抽象，其实是一种愚蠢。真正的天才，必须能够让事情变得简单。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -53,4 +54,5 @@
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     

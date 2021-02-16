@@ -88,6 +88,7 @@
 </ol>
 <p>（本文建议零售价 ￥30，如果它让你的团队或者公司幸免落坑，请付款 ￥1000000 :）</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -99,4 +100,5 @@
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     

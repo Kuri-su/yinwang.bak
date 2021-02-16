@@ -5,6 +5,7 @@
 <p>Oberon 比起 Unix，有很大的不同，在于它的数据都是结构化的。进程间不通过字符串交换数据，而是直接使用数据结构。很奇特的一点是，Oberon 操作系统是用一种同名的程序语言（Oberon 语言）写成。令人惊讶的是，在那个年代，ETH 计算机系的所有教职员工，学生，包括办公室的大妈，都是用的这种操作系统。</p>
 <p>操作系统的设计，真是天外有天。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -16,4 +17,5 @@
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     

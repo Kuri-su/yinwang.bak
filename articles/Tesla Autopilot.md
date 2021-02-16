@@ -51,6 +51,7 @@
 <p>对autopilot进行限制的同时，Tesla又推出了beta版的“<a href="http://www.cnet.com/news/tesla-cars-can-now-self-park-at-your-command">自动趴车</a>”和“召唤”（summon）功能。这些功能貌似很酷，然而它们也附带了许多的限制条件。你只能在某些地方，满足某种特定条件，才能用这些功能。如果你违反这些条件，出了事故，Tesla声称不负责。</p>
 <p>这些能够让车子自己移动的功能，跟autopilot一样，同样会给社会带来安全隐患。比如，有人在不该使用自动趴车和summon功能的地方用了它，就可能会导致车祸。这不是用户的问题，而是Tesla根本不应该发布这些不成熟的技术来哗众取巧。</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -62,4 +63,5 @@
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     

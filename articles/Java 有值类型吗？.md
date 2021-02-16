@@ -32,6 +32,7 @@ x = 2;        // x指向另一个内存地址B，内容是整数2。y仍然指�
 <h3 id="思考题">思考题</h3>
 <p>有人指出，Java 的引用类型可以是 null，而原始类型不行，所以引用类型和值类型还是有区别的。但是其实这并不能否认本文指出的观点，你可以想想这是为什么吗？</p>
 </div>
+<!--
 <div class="ad-banner" style="margin-top: 5px">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
@@ -43,4 +44,5 @@ x = 2;        // x指向另一个内存地址B，内容是整数2。y仍然指�
 <script data-ad-client="ca-pub-1331524016319584" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
+        -->
     
