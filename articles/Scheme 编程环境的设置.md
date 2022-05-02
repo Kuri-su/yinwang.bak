@@ -18,9 +18,9 @@ sudo make install
 <p>如果你对性能没有特别高的需求，主要用于学习，也可以用 Racket。它可以在这里下载：</p>
 <p><a href="http://racket-lang.org">http://racket-lang.org</a></p>
 <p>安装应该很容易。Ubuntu 也自带了 Racket，所以可以直接让系统安装它。</p>
-<h3 id="设置-paredit-mode">设置 ParEdit mode</h3>
-<p>我编辑 Scheme 的时候都用 Emacs。我使用一个叫做 ParEdit mode 的插件。它可以让你“半结构化”式的编辑 Scheme 和其它的 Lisp 文件。开头你可能会有点不习惯，可是一旦习惯了，你就再也离不开它。</p>
-<p>ParEdit mode 可以在这里下载：</p>
+<h3 id="设置-paredit-mode">设置 Paredit mode</h3>
+<p>我编辑 Scheme 的时候都用 Emacs。我使用一个叫做 Paredit mode 的插件。它可以让你“半结构化”式的编辑 Scheme 和其它的 Lisp 文件。开头你可能会有点不习惯，可是一旦习惯了，你就再也离不开它。</p>
+<p>Paredit mode 可以在这里下载：</p>
 <p><a href="http://mumble.net/~campbell/emacs/paredit.el">http://mumble.net/~campbell/emacs/paredit.el</a></p>
 <p>下载之后，把它放到一个目录里，比如 ~/.emacs.d，然后打开 ~/.emacs 配置文件，加入如下设置：</p>
 <div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">'load-path</span> <span class="s">"~/.emacs.d"</span><span class="p">)</span>
@@ -36,8 +36,7 @@ sudo make install
 <span class="c1">;;;;;;;;;;;;</span>
 <span class="p">(</span><span class="nb">require</span> <span class="ss">'cmuscheme</span><span class="p">)</span>
 <span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">"racket"</span><span class="p">)</span>         <span class="c1">;; 如果用 Petite 就改成 "petite"</span>
-</code></pre></div></div>
-<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">;; bypass the interactive question and start the default interpreter</span>
+<span class="c1">;; bypass the interactive question and start the default interpreter</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-proc</span> <span class="p">()</span>
 <span class="s">"Return the current Scheme process, starting one if necessary."</span>
 <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nb">and</span> <span class="nv">scheme-buffer</span>
@@ -47,29 +46,25 @@ sudo make install
 <span class="p">(</span><span class="nv">run-scheme</span> <span class="nv">scheme-program-name</span><span class="p">)))</span>
 <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">scheme-get-process</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">error</span> <span class="s">"No current process. See variable `scheme-buffer'"</span><span class="p">)))</span>
-</code></pre></div></div>
-<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-split-window</span> <span class="p">()</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">switch-other-window-to-buffer</span> <span class="p">(</span><span class="nv">name</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">other-window</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">switch-to-buffer</span> <span class="nv">name</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">other-window</span> <span class="mi">1</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-split-window</span> <span class="p">()</span>
 <span class="p">(</span><span class="nb">cond</span>
 <span class="p">((</span><span class="nb">=</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">count-windows</span><span class="p">))</span>
-<span class="p">(</span><span class="nv">delete-other-windows</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">split-window-vertically</span> <span class="p">(</span><span class="nb">floor</span> <span class="p">(</span><span class="nb">*</span> <span class="mf">0.68</span> <span class="p">(</span><span class="nv">window-height</span><span class="p">))))</span>
-<span class="p">(</span><span class="nv">other-window</span> <span class="mi">1</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">switch-to-buffer</span> <span class="s">"*scheme*"</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">other-window</span> <span class="mi">1</span><span class="p">))</span>
-<span class="p">((</span><span class="nb">not</span> <span class="p">(</span><span class="nb">find</span> <span class="s">"*scheme*"</span>
+<span class="c1">;; (split-window-horizontally (* 0.5 (window-width)))</span>
+<span class="p">(</span><span class="nv">switch-other-window-to-buffer</span> <span class="s">"*scheme*"</span><span class="p">))</span>
+<span class="p">((</span><span class="nb">not</span> <span class="p">(</span><span class="nb">member</span> <span class="s">"*scheme*"</span>
 <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">w</span><span class="p">)</span> <span class="p">(</span><span class="nv">buffer-name</span> <span class="p">(</span><span class="nv">window-buffer</span> <span class="nv">w</span><span class="p">)))</span>
-<span class="p">(</span><span class="nv">window-list</span><span class="p">))</span>
-<span class="ss">:test</span> <span class="ss">'equal</span><span class="p">))</span>
-<span class="p">(</span><span class="nv">other-window</span> <span class="mi">1</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">switch-to-buffer</span> <span class="s">"*scheme*"</span><span class="p">)</span>
-<span class="p">(</span><span class="nv">other-window</span> <span class="mi">-1</span><span class="p">))))</span>
-</code></pre></div></div>
-<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-send-last-sexp-split-window</span> <span class="p">()</span>
+<span class="p">(</span><span class="nv">window-list</span><span class="p">))))</span>
+<span class="p">(</span><span class="nv">switch-other-window-to-buffer</span> <span class="s">"*scheme*"</span><span class="p">))))</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-send-last-sexp-split-window</span> <span class="p">()</span>
 <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">scheme-split-window</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">scheme-send-last-sexp</span><span class="p">))</span>
-</code></pre></div></div>
-<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-send-definition-split-window</span> <span class="p">()</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-send-definition-split-window</span> <span class="p">()</span>
 <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">scheme-split-window</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">scheme-send-definition</span><span class="p">))</span>
@@ -79,10 +74,10 @@ sudo make install
 <span class="p">(</span><span class="nv">define-key</span> <span class="nv">scheme-mode-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;f5&gt;"</span><span class="p">)</span> <span class="ss">'scheme-send-last-sexp-split-window</span><span class="p">)</span>
 <span class="p">(</span><span class="nv">define-key</span> <span class="nv">scheme-mode-map</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">"&lt;f6&gt;"</span><span class="p">)</span> <span class="ss">'scheme-send-definition-split-window</span><span class="p">)))</span>
 </code></pre></div></div>
-<p>我的配置会在加载 Scheme 文件的时候自动载入 ParEdit mode，并且把 F5 键绑定到“执行前面的S表达式”。这样设置的目的是，我只要把光标移动到一个S表达式之后，然后用一根手指头按 F5，就可以执行程序。够懒吧。</p>
-<h3 id="paredit-mode-的简单使用方法">ParEdit mode 的简单使用方法</h3>
-<p>ParEdit mode 是一个很特殊的模式。它起作用的时候，你不能直接修改括号。这样所有的括号都保持完整的匹配，不可能出现语法错误。但是这样有一个问题，如果你要把一块代码放进另一块代码，或者从里面拿出来，就不是很方便了。</p>
-<p>为此，ParEdit mode 提供了几个非常高效的编辑方式。我平时只使用两个：</p>
+<p>我的配置会在加载 Scheme 文件的时候自动载入 Paredit mode，并且把 F5 键绑定到“执行前面的S表达式”。这样设置的目的是，我只要把光标移动到一个S表达式之后，然后用一根手指头按 F5，就可以执行程序。够懒吧。</p>
+<h3 id="paredit-mode-的简单使用方法">Paredit mode 的简单使用方法</h3>
+<p>Paredit mode 是一个很特殊的模式。它起作用的时候，你不能直接修改括号。这样所有的括号都保持完整的匹配，不可能出现语法错误。但是这样有一个问题，如果你要把一块代码放进另一块代码，或者从里面拿出来，就不是很方便了。</p>
+<p>为此，Paredit mode 提供了几个非常高效的编辑方式。我平时只使用两个：</p>
 <ol>
 <li>
 <p><code class="language-plaintext highlighter-rouge">C-right</code>: 也就是按住 Ctrl 再按右箭头。它的作用是让光标右边的括号，“吞掉”下一个S表达式。</p>
