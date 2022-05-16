@@ -35,7 +35,10 @@ sudo make install
 <span class="c1">;; Scheme </span>
 <span class="c1">;;;;;;;;;;;;</span>
 <span class="p">(</span><span class="nb">require</span> <span class="ss">'cmuscheme</span><span class="p">)</span>
-<span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">"racket"</span><span class="p">)</span>         <span class="c1">;; 如果用 Petite 就改成 "petite"</span>
+<span class="c1">;; push scheme interpreter path to exec-path</span>
+<span class="p">(</span><span class="nb">push</span> <span class="s">"/Applications/Racket/bin"</span> <span class="nv">exec-path</span><span class="p">)</span>
+<span class="c1">;; scheme interpreter name</span>
+<span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">"racket"</span><span class="p">)</span>
 <span class="c1">;; bypass the interactive question and start the default interpreter</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">scheme-proc</span> <span class="p">()</span>
 <span class="s">"Return the current Scheme process, starting one if necessary."</span>
@@ -54,7 +57,7 @@ sudo make install
 <span class="p">(</span><span class="nb">cond</span>
 <span class="p">((</span><span class="nb">=</span> <span class="mi">1</span> <span class="p">(</span><span class="nv">count-windows</span><span class="p">))</span>
 <span class="p">(</span><span class="nv">split-window-vertically</span> <span class="p">(</span><span class="nb">floor</span> <span class="p">(</span><span class="nb">*</span> <span class="mf">0.68</span> <span class="p">(</span><span class="nv">window-height</span><span class="p">))))</span>
-<span class="c1">;; (split-window-horizontally (* 0.5 (window-width)))</span>
+<span class="c1">;; (split-window-horizontally (floor (* 0.5 (window-width))))</span>
 <span class="p">(</span><span class="nv">switch-other-window-to-buffer</span> <span class="s">"*scheme*"</span><span class="p">))</span>
 <span class="p">((</span><span class="nb">not</span> <span class="p">(</span><span class="nb">member</span> <span class="s">"*scheme*"</span>
 <span class="p">(</span><span class="nb">mapcar</span> <span class="p">(</span><span class="k">lambda</span> <span class="p">(</span><span class="nv">w</span><span class="p">)</span> <span class="p">(</span><span class="nv">buffer-name</span> <span class="p">(</span><span class="nv">window-buffer</span> <span class="nv">w</span><span class="p">)))</span>
