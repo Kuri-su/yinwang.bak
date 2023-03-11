@@ -8,8 +8,8 @@
 <p>关于版权。这个文档的内容受版权法保护，我保留一切版权。仅供个人阅读和学习，不能将其作为商业用途。请勿转载或拷贝这个文档到其它网站，也请勿翻译。这个博客上的链接应该作为这个样章唯一的来源，链接是可以分享的。如果发现有违反版权约定或抄袭的现象，请来信告诉我。如果发现有错误或者可以改进的地方，欢迎跟我联系。</p>
 <p>样章可以在这里下载：</p>
 <p><a href="https://www.yinwang.org/resources/gucs-sample-chapter1.pdf">第 1 章</a><br />
-<a href="https://www.yinwang.org/resources/gucs-sample-chapter2.pdf">第 2 章</a></p>
-<p>请注意这只是前两节课的内容，不可能包罗万象。因为是样章，所以不提供练习和指导。因为免费样章已经包含了很多价值，所以这本书可能不会再有其它免费内容发布。</p>
+<a href="https://www.yinwang.org/resources/gucs-sample-chapter2.pdf">第 2 章</a><br /><a href="https://www.yinwang.org/resources/gucs-sample-chapter3.pdf">第 3 章</a></p>
+<p>请注意这只是前三节课的内容，不可能包罗万象。因为是样章，所以不提供练习和指导。</p>
 </div>
 <!--
 <div class="ad-banner" style="margin-top: 5px">
