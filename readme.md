@@ -6,10 +6,5 @@ articles from [yinwang.org](http://yinwang.org), auto sync by [@Suzuha](https://
 
 project from [kurisu project](https://kuricat.com/project)
 
-## // TODO 
-
-* http://www.ctex.org/documents/shredder/linux.html (Invalidation)
-* http://www.ctex.org/documents/shredder/ (Invalidation)
-
 
 [![Stargazers over time](https://starchart.cc/Kuri-su/yinwang.bak.svg)](https://starchart.cc/Kuri-su/yinwang.bak)
