@@ -11,17 +11,4 @@
 <p>我为此提出了自己的解决方案：在 lambda 的位置进行“generalization”，也就是说把 ∀ 放在 <code class="language-plaintext highlighter-rouge">lambda 的位置</code>，而不是 <code class="language-plaintext highlighter-rouge">let</code>。这样一来 let-polymorphism 就不存在了。但是这样一来，HM 系统就不再是 HM 系统，因为它的“模块化类型推导”的性质，就会名存实亡。由于类型里面含有程序的“控制结构”，这个类型系统表面上看起来是在进行“模块化类型检查”，而本质上是在做一个“跨过程静态检查”（interprocedual static analysis）。也就是说，模块化的类型推导，在 HM 这样的没有“类型标记”的体系下，其实是不可能实现的。</p>
 <p>为了达到完全通用的模块化类型检查，却又允许多态函数的存在，我们终究会需要在函数的参数位置手工写上类型，这样我们就完全的丧失了 HM 系统设计的初衷。</p>
 </div>
-<!--
-<div class="ad-banner" style="margin-top: 5px">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-                    style="display:inline-block;width:100%;height:90px"
-                    data-ad-client="ca-pub-1331524016319584"
-                    data-ad-slot="6657867155"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<script data-ad-client="ca-pub-1331524016319584" async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
-        -->
     

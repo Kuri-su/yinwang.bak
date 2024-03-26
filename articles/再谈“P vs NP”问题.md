@@ -72,17 +72,4 @@
 <p>当然所有这些都是我的个人观点，我没有强求任何人接受它们。强迫别人接受自己的观点是不可以的，但想阻止别人表达对此类问题的质疑，也是不可以的，因为我们生活在自由的世界。</p>
 <p>没人想抢走你们的玩具，但不要忘了，它只是玩具。</p>
 </div>
-<!--
-<div class="ad-banner" style="margin-top: 5px">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-                    style="display:inline-block;width:100%;height:90px"
-                    data-ad-client="ca-pub-1331524016319584"
-                    data-ad-slot="6657867155"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<script data-ad-client="ca-pub-1331524016319584" async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
-        -->
     

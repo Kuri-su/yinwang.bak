@@ -19,12 +19,12 @@
 <p>Rust 的变量定义有一个比其它语言更奇怪的地方，它可以让你在同一个作用域里面“重复绑定”同一个名字，甚至可以把它绑定到另外一个类型：</p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">x</span><span class="p">:</span> <span class="nb">i32</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-<span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c">// 这两个 x 是两个不同的变量</span>
+<span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// 这两个 x 是两个不同的变量</span>
 <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-<span class="c">// 30 lines of code ...</span>
+<span class="c1">// 30 lines of code ...</span>
 <span class="k">let</span> <span class="n">y</span> <span class="o">=</span> <span class="s">"I can also be bound to text!"</span><span class="p">;</span>
-<span class="c">// 30 lines of code ...</span>
-<span class="nd">println!</span><span class="p">(</span><span class="s">"y is {}"</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>      <span class="c">// 定义在第二个 let y 的地方</span>
+<span class="c1">// 30 lines of code ...</span>
+<span class="nd">println!</span><span class="p">(</span><span class="s">"y is {}"</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>      <span class="c1">// 定义在第二个 let y 的地方</span>
 </code></pre></div></div>
 <p>在 Yin 语言最初的设计里面，我也是允许这样的重复绑定的。第一个 y 和 第二个 y 是两个不同的变量，只不过它们碰巧叫同一个名字而已。你甚至可以在同一行出现两个 x，而它们其实是不同的变量！这难道不是一个很酷，很灵活，其他语言都没有的设计吗？后来我发现，虽然这实现起来没什么难度，可是这样做不但没有带来更大的方便性，反而可能引起程序的混淆不清。在同一个作用域里面，给两个不同的变量起同一个名字，这有什么用处呢？自找麻烦而已。</p>
 <p>比如上面的例子，在下面我们看到一个对变量 <code class="language-plaintext highlighter-rouge">y</code> 的引用，它是在哪里定义的呢？你需要在头脑中对程序进行“数据流分析”，才能找到它定义的位置。从上面读起，我们看到 <code class="language-plaintext highlighter-rouge">let y = 4</code>，然而这不一定是正确的定义，因为 <code class="language-plaintext highlighter-rouge">y</code> 可以被重新绑定，所以我们必须继续往下看。30 行代码之后，我们看到了第二个对 <code class="language-plaintext highlighter-rouge">y</code> 的绑定，可是我们仍然不能确定。继续往下扫，30行代码之后我们到了引用 <code class="language-plaintext highlighter-rouge">y</code> 的地方，没有再看到其它对 <code class="language-plaintext highlighter-rouge">y</code> 的绑定，所以我们才能确信第二个 let 是 <code class="language-plaintext highlighter-rouge">y</code> 的定义位置，它是一个字符串。</p>
@@ -35,7 +35,7 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="o">;</span>
 </code></pre></div></div>
 <p>这样显式的指出变量的类型，而是可以让编译器把类型推导出来。比如你写：</p>
-<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>  <span class="c">// x 的类型推导为 i32</span>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>  <span class="c1">// x 的类型推导为 i32</span>
 </code></pre></div></div>
 <p>编译器的类型推导就可以知道 <code class="language-plaintext highlighter-rouge">x</code> 的类型是 i32，而不需要你把“i32”写在那里。这似乎是一个很方便的东西。然而看过很多 C# 代码之后你发现，这看似方便，却让程序变得不好读。在看 C# 代码的时候，我经常看到一堆的变量定义，每一个的前面都是 var。我没法一眼就看出它们表示什么，是整数，bool，还是字符串，还是某个用户定义的类？</p>
 <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">correct</span> <span class="p">=</span> <span class="p">...;</span>
@@ -49,7 +49,7 @@
 <h3 id="动作的返回值">动作的“返回值”</h3>
 <p>Rust 的文档说它是一种“<a href="https://doc.rust-lang.org/book/functions.html#expressions-vs-statements">大部分基于表达式</a>”的语言，并且给出这样一个例子：</p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">mut</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">6</span><span class="p">);</span>  <span class="c">// x has the value `()`, not `6`</span>
+<span class="k">let</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">6</span><span class="p">);</span>  <span class="c1">// x has the value `()`, not `6`</span>
 </code></pre></div></div>
 <p>奇怪的是，这里变量 <code class="language-plaintext highlighter-rouge">x</code> 会得到一个值，空的 tuple，<code class="language-plaintext highlighter-rouge">()</code>。这种思路不大对，它是从像 OCaml 那样的语言照搬过来的，而 OCaml 本身就有问题。在 OCaml 里面，如果你使用 <code class="language-plaintext highlighter-rouge">print_string</code>，那你会得到如下的结果：</p>
 <div class="language-haskell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">print_string</span> <span class="s">"hello world!</span><span class="se">\n</span><span class="s">"</span><span class="p">;;</span>
@@ -84,14 +84,14 @@
 <span class="k">fn</span> <span class="nf">add_one</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">i32</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">i32</span> <span class="p">{</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-<span class="c">// 做很多事...</span>
+<span class="c1">// 做很多事...</span>
 <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="c">// 做很多事...</span>
+<span class="c1">// 做很多事...</span>
 <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="p">}</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="c">// 做很多事...</span>
+<span class="c1">// 做很多事...</span>
 <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span>
 <span class="p">}</span>
 <span class="p">}</span>
@@ -103,15 +103,15 @@
 <p>Rust 的数组可变性标记，跟 Swift 犯了一样的错误。Swift 的问题，我已经在之前的<a href="http://www.yinwang.org/blog-cn/2016/06/06/swift">文章</a>有详细叙述，所以这里就不多说了。简言之，同一个标记能表示的可变性，要么针对数组指针，要么针对数组元素，应该只能选择其一。而在 Rust 里面，你只有一个地方可以放“mut”进去，所以要么数组指针和元素全部都可变，要么数组指针和元素都不可变。你没有办法制定一个不可变的数组指针，而它指向的数组的元素却是可变的。</p>
 <p>请对比下面两个例子：</p>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>      <span class="c">// 指针和元素都不可变</span>
-<span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>              <span class="c">// 出错</span>
-<span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>          <span class="c">// 也出错</span>
+<span class="k">let</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>      <span class="c1">// 指针和元素都不可变</span>
+<span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>              <span class="c1">// 出错</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>          <span class="c1">// 也出错</span>
 <span class="p">}</span>
 </code></pre></div></div>
 <div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-<span class="k">let</span> <span class="k">mut</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>  <span class="c">// 指针和元素都可变</span>
-<span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>              <span class="c">// 不出错</span>
-<span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>          <span class="c">// 也不出错</span>
+<span class="k">let</span> <span class="k">mut</span> <span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>  <span class="c1">// 指针和元素都可变</span>
+<span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>              <span class="c1">// 不出错</span>
+<span class="n">m</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>          <span class="c1">// 也不出错</span>
 <span class="p">}</span>
 </code></pre></div></div>
 <h3 id="内存管理">内存管理</h3>
@@ -131,17 +131,4 @@
 <p>本来想写一个更详细的评价的，可是到了这个地方，我感觉已经失去兴趣了，困就一个字啊…… Rust 比 C 语言复杂太多，我很难想象用这样的语言来构造大型的操作系统。而构造系统程序，是 Rust 设计的初衷。说真的，写操作系统那样的程序，C 语言真的不算讨厌。用户空间的程序，Java，C# 和 Swift 完全可以胜任。所以我觉得 Rust 的市场空间恐怕非常狭小……</p>
 <p>（如果你喜欢这些内容，请付费5美元或者30人民币，谢谢！）</p>
 </div>
-<!--
-<div class="ad-banner" style="margin-top: 5px">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-                    style="display:inline-block;width:100%;height:90px"
-                    data-ad-client="ca-pub-1331524016319584"
-                    data-ad-slot="6657867155"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<script data-ad-client="ca-pub-1331524016319584" async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
-        -->
     

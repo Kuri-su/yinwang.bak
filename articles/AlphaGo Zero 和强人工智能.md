@@ -18,17 +18,4 @@
 <p>对于“强人工智能”，我的看法也是类似的。在我们真正理解人类智能到底是什么之前，“强人工智能”这个词并没有确切的定义。所以谈论强人工智能是否可以实现，什么时候实现，是没有意义的。我们还没有资格讨论这个问题。</p>
 <p>（如果你喜欢这篇文章，可以考虑<a href="http://www.yinwang.org/blog-cn/2016/04/13/pay-blog">付款购买</a>。）</p>
 </div>
-<!--
-<div class="ad-banner" style="margin-top: 5px">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-                    style="display:inline-block;width:100%;height:90px"
-                    data-ad-client="ca-pub-1331524016319584"
-                    data-ad-slot="6657867155"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<script data-ad-client="ca-pub-1331524016319584" async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
-        -->
     

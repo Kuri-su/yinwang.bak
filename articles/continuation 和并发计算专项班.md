@@ -5,17 +5,4 @@
 <p>这个主题我估计总的过程只需要两周，大约三次课完成，随着内容的深入和发展，也可能临时增加课时和讨论。课后的微信群也会提供更多的思考内容，与现实的并发系统接轨。课后会形成一个专项研究群，持续讨论与这个话题相关的最新研究。我希望参加课程的同学能成为这方面的专家。</p>
 <p>最后的时间还没有确定，会根据报名情况而定。由于需要基础班的基础知识，并且可能涉及一些具体的练习，所以目前仅限参加过基础班或阅读班的同学，参加过进阶班的同学也可以再次报名以加深理解。有兴趣的同学可以微信跟我联系。</p>
 </div>
-<!--
-<div class="ad-banner" style="margin-top: 5px">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-                    style="display:inline-block;width:100%;height:90px"
-                    data-ad-client="ca-pub-1331524016319584"
-                    data-ad-slot="6657867155"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-</div>
-<script data-ad-client="ca-pub-1331524016319584" async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
-        -->
     
